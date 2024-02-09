@@ -3,7 +3,7 @@
 Launch dev mode
 
 ```sh
-zola serve --interface 0.0.0.0 --base-url /
+zola serve
 ```
 
 ## Getting started

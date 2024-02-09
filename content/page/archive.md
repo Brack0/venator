@@ -1,5 +1,5 @@
 +++
-title = "Archive"
-path = "archive"
-template = "archive.html"
+title = "Archives"
+path = "archives"
+template = "archives.html"
 +++

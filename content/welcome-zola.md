@@ -1,6 +1,9 @@
 +++
 title = "Welcome Zola !"
 date = 2024-02-02
+
+[taxonomies]
+tags = ["zola"]
 +++
 
 Big changes for me, small changes for you, I'm switching to [Zola](https://www.getzola.org/) for my personal blog. This is the first blog post. I'm using a new theme as well, which also convince me to change. [Docusaurus](https://docusaurus.io/) is well suited for (technical) documentation but not so elegant for blogging (opinion).

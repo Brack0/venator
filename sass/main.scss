@@ -267,3 +267,35 @@ hr {
 .hidden {
   display: none;
 }
+
+.codeblock {
+  position: relative;
+
+  .codeblock__name {
+    position: absolute;
+    right: 0;
+  }
+}
+
+.advice {
+  border-left: 2px solid;
+  padding: 0.5rem;
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+
+  [class^="advice__"]:not(.advice__content) {
+    font-size: 1.2rem;
+    font-style: italic;
+    text-transform: capitalize;
+    margin-bottom: 1rem;
+  }
+
+  .advice__content {
+    > :first-child {
+      margin-top: 0;
+    }
+    > :last-child {
+      margin-bottom: 0;
+    }
+  }
+}

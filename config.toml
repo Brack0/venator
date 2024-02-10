@@ -30,17 +30,11 @@ logo_text = "brack0.dev"
 
 # menu is enabled by adding menu_items (optional)
 menu_items = [
-    # each of these is optional, name and url are required
-    # $BASE_URL is going to be substituted by base_url from configuration
-    { name = "blog", url = "/" },
-
-    # tags should only be enabled if you have "tags" taxonomy
-    # see documentation below for more details
+    { name = "blog", url = "/blog" },
     { name = "tags", url = "/tags"},
     { name = "archives", url = "/archives" },
     { name = "about me", url = "/about" },
 
-    # set newtab to true to make the link open in new tab
     { name = "github", url = "https://github.com/brack0", newtab = true },
     { name = "gitlab", url = "https://gitlab.com/Brack0", newtab = true },
 ]
@@ -60,17 +54,6 @@ post_view_navigation_prompt = "Thanks for reading! Read other posts?"
 #           in your site's "static" directory.
 # favicon = "/favicon.png"
 # favicon_mimetype = "image/png"
-
-# Optional: Set how <title> elements are rendered.
-# Values:
-# - "main_only" -- only the main title (`config.title`) is rendered.
-# - "page_only" -- only the page title (if defined) is rendered,
-#                  falling back to `config.title` if not defined or empty.
-# - "combined" -- combine like so: "page_title | main_title",
-#                 or if page_title is not defined or empty, fall back to `main_title`
-#
-# Note that the main (index) page only has the main title.
-page_titles = "main_only"
 
 # Optional: default image to use for OpenGraph.
 #           If the page doesnt set og_image, use this one as fallback. Usefull

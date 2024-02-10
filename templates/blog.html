@@ -1,0 +1,48 @@
+{% extends "index.html" %}
+
+{%- block title -%}
+{{ title_macros::title(page_title=section.title, main_title=config.title) }}
+{%- endblock -%}
+
+{% block hero %}
+{% endblock hero %}
+
+{% block content %}
+    <div class="posts">
+        {%- if paginator %}
+            {%- set show_pages = paginator.pages -%}
+        {% else %}
+            {% set section = get_section(path="_index.md") %}
+
+            {%- set show_pages = section.pages -%}
+        {% endif -%}
+
+        {%- for page in show_pages %}
+            <div class="post on-list">
+                {{ post_macros::header(page=page, summary=true) }}
+
+                {{ post_macros::content(page=page, summary=true) }}
+            </div>
+        {% endfor -%}
+        <div class="pagination">
+            <div class="pagination__buttons">
+            {%- if paginator.previous %}
+                <span class="button previous">
+                    <a href="{{ paginator.previous | safe }}">
+                        <span class="button__icon">←</span>&nbsp;
+                        <span class="button__text">Newer posts</span>
+                    </a>
+                </span>
+            {% endif -%}
+            {%- if paginator.next %}
+                <span class="button next">
+                    <a href="{{ paginator.next | safe }}">
+                        <span class="button__text">Older posts</span>&nbsp;
+                        <span class="button__icon">→</span>
+                    </a>
+                </span>
+            {% endif -%}
+            </div>
+        </div>
+    </div>
+{% endblock content %}

@@ -1,13 +1,12 @@
-{% extends "index.html" %}
+{% extends "base.html" %}
 
 {%- block title -%}
 {{ title_macros::title(page_title=page.title, main_title=config.title) }}
 {%- endblock -%}
 
-{% block hero %}
-{% endblock hero %}
 
 {% block content %}
+<div class="content">
     <div class="post">
         <h1 class="post-title">{{ page.title }}</h1>
 
@@ -16,4 +15,5 @@
 
         {{ post_macros::list_posts(pages=section.pages) }}
     </div>
+</div>
 {% endblock content %}

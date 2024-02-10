@@ -1,4 +1,4 @@
-{% extends "index.html" %}
+{% extends "base.html" %}
 
 {% block title %}
 404 | {{ config.title }}
@@ -8,12 +8,12 @@
 {{ menu_macros::menu_for(config=config, current_item="") }}
 {% endblock header_menu %}
 
-{% block hero %}
-{% endblock hero %}
 
 {% block content %}
-<div class="post">
-  <h1 class="post-title">{% block heading %}Lost?{% endblock heading %}</h1>
-  <p>{% block message %}This page does not exist.{% endblock message %}</p>
+<div class="content">
+    <div class="post">
+        <h1 class="post-title">{% block heading %}Lost?{% endblock heading %}</h1>
+        <p>{% block message %}This page does not exist.{% endblock message %}</p>
+    </div>
 </div>
 {% endblock content %}

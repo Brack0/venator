@@ -1,0 +1,83 @@
+{% import "macros/head.html" as head_macros -%}
+{% import "macros/menu.html" as menu_macros -%}
+{% import "macros/post.html" as post_macros -%}
+{% import "macros/title.html" as title_macros -%}
+
+<!DOCTYPE html>
+<html lang="{%- if config.default_language -%}{{ config.default_language }}{%- else -%}en{%- endif -%}">
+
+<head>
+    <title>{%- block title %}Welcome aboard the Venator{% endblock title -%}</title>
+    {{ head_macros::head(config=config) }}
+
+    {%- block open_graph %}{{ head_macros::open_graph(config=config) }}{% endblock open_graph -%}
+
+    {%- if config.generate_feed %}
+        {%- if "rss" in config.feed_filename %}
+            {% set feed_type = 'rss+xml' %}
+        {%- else %}
+            {% set feed_type = 'atom+xml' %}
+        {% endif -%}
+        <link rel="alternate" type="application/{{ feed_type }}" title="RSS" href="{{ get_url(path=config.feed_filename) | safe }}">
+    {% endif -%}
+
+    {%- if config.extra.favicon %}
+        <link rel="shortcut icon" type="{{ config.extra.favicon_mimetype | default(value="image/x-icon") | safe }}" href="{{ config.extra.favicon | safe }}">
+    {% endif -%}
+
+    {%- block extra_head %}
+    {% endblock extra_head -%}
+</head>
+
+<body>
+<div class="container">
+    {% block header %}
+    <header class="header">
+        <div class="header__inner">
+            <div class="header__logo">
+                {%- if config.extra.logo_home_link %}
+                    {% set logo_link = config.extra.logo_home_link %}
+                {% else %}
+                    {% set logo_link = config.base_url %}
+                {% endif -%}
+                <a href="{{ logo_link | safe }}" style="text-decoration: none;">
+                    <div class="logo">
+                      {% block logo_content %}
+                        {%- if config.extra.logo_text %}
+                            {{ config.extra.logo_text }}
+                        {% else %}
+                            Terminimal theme
+                        {% endif -%}
+                        {% endblock logo_content %}
+                    </div>
+                </a>
+            </div>
+        </div>
+
+        {% block header_menu %}
+        {{ menu_macros::menu(config=config, current_path=current_path) }}
+        {% endblock header_menu %}
+    </header>
+    {% endblock header %}
+
+    <main>
+        {% block content %}
+        {% endblock content %}
+    </main>
+
+    {% block footer %}
+    <footer class="footer">
+        <div class="copyright">
+            <span>© {{ now() | date(format="%Y") }} Powered by <a rel="noopener noreferrer" target="_blank" href="https://www.getzola.org/">Zola</a></span>
+            <span class="copyright__sep">::</span>
+            <span class="copyright__side">Theme inspired by <a rel="noopener noreferrer" target="_blank" href="https://github.com/pawroman/zola-theme-terminimal/">Terminimal</a></span>
+            <span class="copyright__sep">::</span>
+            <span class="copyright__side">Hosted on <a rel="noopener noreferrer" target="_blank" href="https://vercel.com/">Vercel</a></span>
+        </div>
+    </footer>
+    {% endblock footer %}
+
+</div>
+</body>
+
+</html>

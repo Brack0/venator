@@ -218,17 +218,25 @@ ol ol {
 }
 
 .hero {
-  margin-top: 4rem;
-  margin-bottom: 4rem;
-  text-align: center;
+  .hero__main {
+    margin-top: 4rem;
+    margin-bottom: 4rem;
+    text-align: center;
+  }
 
   .hero__title {
     color: var(--accent);
-    font-size: 3rem; 
+    font-size: 3rem;
   }
 
   .hero__subtitle {    
     font-style: italic;
+  }
+
+  .hero__name {
+    display: inline;
+    font-size: 1.2rem;
+    color: var(--accent);
   }
 }
 

@@ -31,7 +31,6 @@ logo_text = "brack0.dev"
 # menu is enabled by adding menu_items (optional)
 menu_items = [
     { name = "blog", url = "/blog" },
-    { name = "tags", url = "/tags"},
     { name = "archives", url = "/archives" },
     { name = "about me", url = "/about" },
 

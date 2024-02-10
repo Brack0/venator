@@ -1,13 +1,12 @@
-{% extends "index.html" %}
+{% extends "base.html" %}
 
 {%- block title -%}
 {{ title_macros::title(page_title=section.title, main_title=config.title) }}
 {%- endblock -%}
 
-{% block hero %}
-{% endblock hero %}
 
 {% block content %}
+<div class="content">
     <div class="posts">
         {%- if paginator %}
             {%- set show_pages = paginator.pages -%}
@@ -45,4 +44,5 @@
             </div>
         </div>
     </div>
+</div>
 {% endblock content %}

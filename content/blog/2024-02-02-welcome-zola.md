@@ -1,6 +1,5 @@
 +++
 title = "Welcome Zola !"
-date = 2024-02-02
 
 [taxonomies]
 tags = ["zola"]

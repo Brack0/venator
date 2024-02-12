@@ -32,7 +32,7 @@ Each dependency is resolved by progressively climbing the `Injector` chain. For 
 
 At the top of the structure, it is the same operation for all Angular applications. There is a `PlatformModule` that is called in `main.ts` and everything that has not been found ends up in a `NullInjector` (cf. illustration below).
 
-![Illustration of the root `Injector`, the platform `Injector` and the `NullInjector`](./base-injectors.png)
+![Illustration of the root `Injector`, the platform `Injector` and the `NullInjector`](base-injectors.png)
 
 {% advice(type="tip") %}
 The list of `providers` for an `Injector` is not set in stone. It is possible to assign other services to the _root_ `Injector` after the application starts. This is what happens when you do `providedIn: "root"` on a service that is only used in a module with lazy-loading.

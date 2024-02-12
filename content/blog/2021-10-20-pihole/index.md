@@ -41,7 +41,7 @@ As `pi` user is really common, one may want to switch to another username (small
 _Trivia : We use Netplan to define a static IP address via configuration file. This part is optional if you want to define it with another method._
 
 1. Install [netplan](https://netplan.io/) > 0.95 (see appendix if required version is not available)
-2. Define a config (see [Netplan config](./netplan.yaml))
+2. Define a config (see [Netplan config](netplan.yaml))
 3. Run `netplan try` and then `netplan apply` to define your IP
 4. Check your IP (via `ip a` or `ifconfig`)
 

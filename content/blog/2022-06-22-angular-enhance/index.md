@@ -30,11 +30,11 @@ Sur la première page des deux applications (<https://papa-heroes-angular.azurew
 
 ### Angular 11
 
-![Assets téléchargés en Angular : 926 Ko](./heroes-angular.png)
+![Assets téléchargés en Angular : 926 Ko](heroes-angular.png)
 
 ### React 16
 
-![Assets téléchargés en React : 754 Ko](./heroes-react.png)
+![Assets téléchargés en React : 754 Ko](heroes-react.png)
 
 Cela représente presque 20% de moins pour l'application en React. Même si l'écart se réduit (en pourcentage) quand l'application prend de l'ampleur, la taille et la performance de nos applications sont un élément crucial de l'expérience utilisateur. La performance et les optimisations sont souvent mentionnées dans la [roadmap](https://angular.io/guide/roadmap), espérons que cela continue !
 

@@ -60,4 +60,4 @@ post_view_navigation_prompt = "Thanks for reading! Read other posts?"
 #default_og_image = "static/ocean.jpg"
 
 hero_title = "Venator"
-hero_subtitle = "The Backbone of Web Development against Confederacy of Node_modules"
+hero_tagline = "The Backbone of Web Development against Confederacy of Node_modules"

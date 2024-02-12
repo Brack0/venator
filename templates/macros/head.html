@@ -74,3 +74,12 @@
     <meta property="twitter:domain" content="{{ config.base_url | replace(from="https://", to="") }}">
     <meta property="twitter:url" content="{{ permalink | safe }}">
 {% endmacro open_graph %}
+
+{% macro inline_style(stylesheet_path) %}
+    {%- set stylesheet = load_data(path=stylesheet_path) %}
+    {%- if stylesheet %}
+    <style>
+        {{ stylesheet | safe }}
+    </style>
+    {%- endif %}
+{% endmacro inline_style %}

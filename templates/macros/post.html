@@ -5,7 +5,7 @@
         </div>
         <div>
             <a class="read-more button" href="{{ page.permalink | safe }}">
-                <span class="button__text">Read more</span>&nbsp;
+                <span class="button__text">{{ trans(key="post_read_more") }}</span>&nbsp;
                 <span class="button__icon">&#8617;&#xFE0E;</span>
             </a>
         </div>
@@ -28,10 +28,10 @@
 
 
 {% macro earlier_later(page) %}
-    {%- if config.extra.enable_post_view_navigation and page.lower or page.higher %}
+    {%- if page.lower or page.higher %}
         <div class="pagination">
             <div class="pagination__title">
-                <span class="pagination__title-h">{{ config.extra.post_view_navigation_prompt }}</span>
+                <span class="pagination__title-h">{{ trans(key="post_view_navigation_prompt") }}</span>
                 <hr />
             </div>
             <div class="pagination__buttons">
@@ -96,11 +96,11 @@
                 ::
                 {%- set sep = "," -%}
             {% else %}
-                :: tags:&nbsp;
+                :: {{ trans(key="tag_tags") }}:&nbsp;
                 {%- set sep = "&nbsp;" -%}
             {% endif -%}
             {%- for tag in page.taxonomies.tags | sort | unique(case_sensitive=false) %}
-                <a class="post-tag" href="{{ get_taxonomy_url(kind='tags', name=tag) | safe }}">#{{ tag }}</a>
+                <a class="post-tag" href="{{ get_taxonomy_url(kind='tags', name=tag, lang=page.lang) | safe }}">#{{ tag }}</a>
                 {%- if not loop.last %}{{ sep | safe }}{% endif -%}
             {% endfor -%}
         </span>

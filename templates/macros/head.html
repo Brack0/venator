@@ -76,10 +76,7 @@
 {% endmacro open_graph %}
 
 {% macro inline_style(stylesheet_path) %}
-    {%- set stylesheet = load_data(path=stylesheet_path) %}
-    {%- if stylesheet %}
     <style>
-        {{ stylesheet | safe }}
+        {{ load_data(path=stylesheet_path) | safe }}
     </style>
-    {%- endif %}
 {% endmacro inline_style %}

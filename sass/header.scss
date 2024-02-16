@@ -29,7 +29,7 @@
 
     &:after {
       content: '';
-      background: repeating-linear-gradient(90deg, var(--accent), var(--accent) 2px, transparent 0, transparent 16px);
+      background: repeating-linear-gradient(-90deg, var(--accent), var(--accent) 2px, transparent 0, transparent 16px);
       display: block;
       width: 100%;
       right: 10px;
@@ -43,8 +43,10 @@
 
   .menu {
     margin: 20px 0;
+    display: flex;
+    justify-content: space-between;
 
-    &__inner {
+    &__links, &__translations {
       display: flex;
       flex-wrap: wrap;
       list-style: none;
@@ -60,35 +62,6 @@
           margin-right: 20px;
           margin-bottom: 10px;
           flex: 0 0 auto;
-        }
-      }
-    }
-
-    &__sub-inner {
-      position: relative;
-      list-style: none;
-      padding: 0;
-      margin: 0;
-
-      &:not(:only-child) {
-        margin-left: 20px;
-      }
-
-      &-more {
-        @include menu;
-        top: 35px;
-        left: 0;
-
-        &-trigger {
-          color: var(--accent);
-          user-select: none;
-          cursor: pointer;
-        }
-
-        li {
-          margin: 0;
-          padding: 5px;
-          white-space: nowrap;
         }
       }
     }

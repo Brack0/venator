@@ -6,9 +6,7 @@ compile_sass = true
 generate_feed = true
 feed_filename = "rss.xml"
 build_search_index = false
-taxonomies = [
-    {name = "tags"}
-]
+taxonomies = [{ name = "tags" }]
 
 [markdown]
 highlight_code = true
@@ -17,47 +15,78 @@ external_links_target_blank = true
 external_links_no_referrer = true
 smart_punctuation = true
 
-[extra]
+[languages.fr]
+title = "Venator"
+taxonomies = [{ name = "tags" }]
+
+[translations]
 logo_text = "brack0.dev"
 
-# The logo link - defaults to base_url.
-#logo_home_link = "/take/me/away!"
+footer_powered_by = "Powered by"
+footer_theme_by = "Theme inspired by"
+footer_hosted_on = "Hosted on"
 
-# Author name: when specified, modifies the default
-# copyright text. Apart from author, it will
-# contain current year and a link to the theme.
-#author = "My Name"
+hero_title = "Venator"
+hero_tagline = "The Backbone of Web Development against Confederacy of Node_modules"
+hero_hello_there = "Hello there 👋 !"
+hero_content_1 = "My name is "
+hero_content_2 = "Denis Souron"
+hero_content_3 = ". I am a developer, casual blogger & co-host of Front-end chronicles podcast."
 
-# menu is enabled by adding menu_items (optional)
-menu_items = [
-    { name = "blog", url = "/blog" },
-    { name = "archives", url = "/archives" },
-    { name = "about me", url = "/about" },
+lost = "Lost?"
+page_doesnt_exist = "This page does not exist."
 
-    { name = "github", url = "https://github.com/brack0", newtab = true },
-    { name = "gitlab", url = "https://gitlab.com/Brack0", newtab = true },
-]
+paginator_newer_posts = "Newer posts"
+paginator_older_posts = "Older posts"
 
-# Whether to show links to earlier and later (aka. higher/lower) posts
-# on each post page (defaults to true).
-enable_post_view_navigation = true
-
-# The text shown at the bottom of a post,
-# before earlier/later post links.
-# Defaults to "Thanks for reading! Read other posts?"
+post_post = "post"
+post_read_more = "Read more"
 post_view_navigation_prompt = "Thanks for reading! Read other posts?"
 
-# Optional: Global favicon URL and mimetype.
-#           Mimetype defaults to "image/x-icon".
-#           The URL should point at a file located
-#           in your site's "static" directory.
-# favicon = "/favicon.png"
-# favicon_mimetype = "image/png"
+tag_all_tags = "all tags"
+tag_tag = "tag"
+tag_tags = "tags"
+tag_show_all_tags = "Show all tags"
+
+[languages.fr.translations]
+logo_text = "brack0.dev"
+
+footer_powered_by = "Powered by"
+footer_theme_by = "Theme inspired by"
+footer_hosted_on = "Hosted on"
+
+hero_title = "Venator"
+hero_tagline = "The Backbone of Web Development against Confederacy of Node_modules"
+hero_hello_there = "Hello there 👋 !"
+hero_content_1 = "My name is "
+hero_content_2 = "Denis Souron"
+hero_content_3 = ". I am a developer, casual blogger & co-host of Front-end chronicles podcast."
+
+lost = "Lost?"
+page_doesnt_exist = "This page does not exist."
+
+paginator_newer_posts = "Newer posts"
+paginator_older_posts = "Older posts"
+
+post_post = "post"
+post_read_more = "Read more"
+post_view_navigation_prompt = "Thanks for reading! Read other posts?"
+
+tag_all_tags = "all tags"
+tag_tag = "tag"
+tag_tags = "tags"
+tag_show_all_tags = "Show all tags"
+
+[extra]
+menu_items = [
+    { name = "blog", url = "blog" },
+    { name = "about me", url = "about" },
+
+    { name = "github", url = "https://github.com/brack0", external = true },
+    { name = "gitlab", url = "https://gitlab.com/Brack0", external = true },
+]
 
 # Optional: default image to use for OpenGraph.
 #           If the page doesnt set og_image, use this one as fallback. Usefull
 #           for indexes and taxonomies' pages.
 #default_og_image = "static/ocean.jpg"
-
-hero_title = "Venator"
-hero_tagline = "The Backbone of Web Development against Confederacy of Node_modules"

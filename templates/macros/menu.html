@@ -35,16 +35,36 @@
         {%- set menu_items = config.extra.menu_items -%}
 
         <nav class="menu">
-            <ul class="menu__inner">
+            <ul class="menu__links">
             {%- for item in menu_items %}
                 <li {%- if current_item and current_item == item %} class="active" {%- endif %}>
-                    {%- if item.newtab -%}
-                        <a href="{{ item.url | replace(from="$BASE_URL", to=config.base_url) | safe }}" target="_blank" rel="noopener noreferrer">{{ item.name | safe }}</a>
+                    {%- if item.external -%}
+                        <a href="{{ item.url | safe }}" target="_blank" rel="noopener noreferrer">{{ item.name | safe }}</a>
                     {%- else -%}
-                        <a href="{{ item.url | replace(from="$BASE_URL", to=config.base_url) | safe }}">{{ item.name | safe }}</a>
+                        <a href="{{ get_url(path=item.url, lang=lang) }}">{{ item.name | safe }}</a>
                     {%- endif -%}
                 </li>
             {% endfor -%}
+            </ul>
+
+            
+            {%- if page.translations %}
+                {%- set translations = page.translations %}
+            {%- elif section.translations %}
+                {%- set translations = section.translations %}
+            {%- else %}
+                {%- set translations = [] %}
+            {% endif -%}
+            <ul class="menu__translations">
+                {%- for translation in translations %}
+                    {%- if translation.lang != lang %}
+                    <li>
+                        <a href="{{ translation.permalink }}">
+                            {{ translation.lang }}
+                        </a>
+                    </li>
+                    {% endif -%}
+                {% endfor -%}
             </ul>
         </nav>
     {% endif -%}

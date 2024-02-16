@@ -3,10 +3,10 @@
 {% block content %}
 <div class="hero">
     <div class="hero__main">
-        <h1 class="hero__title">{{ config.extra.hero_title }}</h1>
-        <p class="hero__tagline">{{ config.extra.hero_tagline }}</p>
+        <h1 class="hero__title">{{ trans(key="hero_title") }}</h1>
+        <p class="hero__tagline">{{ trans(key="hero_tagline") }}</p>
     </div>
-    <p>Hello there 👋 !</p>
-    <div>My name is <h2 class="hero__name">Denis Souron</h2>. I am a developer, casual blogger & co-host of Front-end chronicles podcast.</div>
+    <p>{{ trans(key="hero_hello_there") }}</p>
+    <div>{{ trans(key="hero_content_1") }}<h2 class="hero__name">{{ trans(key="hero_content_2") }}</h2>{{ trans(key="hero_content_3") }}</div>
 </div>
 {% endblock content %}

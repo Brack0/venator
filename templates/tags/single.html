@@ -10,12 +10,12 @@
 <div class="content">
     <div class="post">
         <h1 class="post-title">
-            tag: #{{ term.name }}
-            ({{ term.pages | length }} post{{ term.pages | length | pluralize }})
+            {{ trans(key="tag_tag") }}: #{{ term.name }}
+            ({{ term.pages | length }} {{ trans(key="post_post") }}{{ term.pages | length | pluralize }})
         </h1>
 
         <a href="{{ config.base_url | safe }}/tags">
-            Show all tags
+            {{ trans(key="tag_show_all_tags") }}
         </a>
 
         {{ post_macros::list_posts(pages=term.pages) }}

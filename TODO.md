@@ -42,6 +42,7 @@
 - inject only relevant CSS (split)
 - use BEM ? or tag based ?
 - inline CSS (macro: inline_style)
+- Reset : https://keithjgrant.com/posts/2024/01/my-css-resets/
 
 ### Other
 

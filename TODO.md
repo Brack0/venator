@@ -2,17 +2,12 @@
 
 ## \<head> tag
 
-- Title logic (reduce brain overload for sections, pages and others)
-- \<meta> (author and description)
-- OpenGraph (`<html prefix="og: https://ogp.me/ns#">`)
-- Twitter
 - Favicon
 
 ## SEO
 
 - robots.txt
 - sitemap.xml
-- RSS
 
 ## A11Y
 
@@ -26,12 +21,13 @@
 
 ## Content
 
-- i18n (fix menu links)
-- Front-end chronicles episodes
+- i18n (add french translations, hreflang alternates)
+- Front-end chronicles episodes (blog posts, templates, RSS)
 - Landing (crazy CSS ? OpenGL ? WebAssembly ?): be aware of browser/device support
 - Algolia ?
 - Footer content
 - 404
+- Authors in blog posts
 
 ## Technical
 
@@ -44,6 +40,9 @@
 
 ### Other
 
+- A lot of `| safe` is either missing or useless. Need some cleanup on these.
+- Rename translation keys
+- Cleanup menu template in `base.html`
 - some doc as code for some features (only Tera comments `{# #}` as HTML comments can go to production)
 - create a github issue on Zola: Code hightlight + HTML minify => break newlines in code
 - <https://observatory.mozilla.org/analyze/venator.vercel.app> (and add a badge in Readme)

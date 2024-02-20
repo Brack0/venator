@@ -3,8 +3,7 @@ title = "Venator"
 
 default_language = "en"
 compile_sass = true
-generate_feed = true
-feed_filename = "rss.xml"
+feed_filename = "rss.xml"        # Enabled in blog content
 build_search_index = false
 taxonomies = [{ name = "tags" }]
 
@@ -14,6 +13,15 @@ highlight_theme = "ayu-mirage"
 external_links_target_blank = true
 external_links_no_referrer = true
 smart_punctuation = true
+
+[extra]
+menu_items = [
+    { name = "blog", url = "blog" },
+    { name = "about me", url = "about" },
+
+    { name = "github", url = "https://github.com/brack0", external = true },
+    { name = "gitlab", url = "https://gitlab.com/Brack0", external = true },
+]
 
 [languages.fr]
 title = "Venator"
@@ -76,17 +84,3 @@ tag_all_tags = "all tags"
 tag_tag = "tag"
 tag_tags = "tags"
 tag_show_all_tags = "Show all tags"
-
-[extra]
-menu_items = [
-    { name = "blog", url = "blog" },
-    { name = "about me", url = "about" },
-
-    { name = "github", url = "https://github.com/brack0", external = true },
-    { name = "gitlab", url = "https://gitlab.com/Brack0", external = true },
-]
-
-# Optional: default image to use for OpenGraph.
-#           If the page doesnt set og_image, use this one as fallback. Usefull
-#           for indexes and taxonomies' pages.
-#default_og_image = "static/ocean.jpg"

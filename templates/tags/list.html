@@ -1,8 +1,19 @@
 {% extends "base.html" %}
 
 {%- block title -%}
-{{ title_macros::title(page_title="Tags", main_title=config.title) }}
+Tags | {{ config.title }}
 {%- endblock -%}
+
+{%- block head_meta %}
+<meta name="description" content="All tags">
+
+<meta property="og:description" content="All tags">
+<meta property="og:title" content="Tags | {{ config.title }}">
+<meta property="og:type" content="website">
+<meta property="og:url" content='{{ get_taxonomy(kind=taxonomy.name) | get(key="permalink") }}'>
+
+<meta name="twitter:card" content="summary_large_image">
+{% endblock head_meta -%}
 
 
 {% block content %}

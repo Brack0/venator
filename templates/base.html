@@ -1,37 +1,23 @@
 {% import "macros/head.html" as head_macros -%}
-{% import "macros/menu.html" as menu_macros -%}
-{% import "macros/post.html" as post_macros -%}
-{% import "macros/title.html" as title_macros -%}
 
 <!DOCTYPE html>
-<html lang="{{ lang }}">
+<html lang="{{ lang }}" prefix="og: https://ogp.me/ns#">
 
 <head>
     <title>{%- block title %}Welcome aboard the Venator{% endblock title -%}</title>
-    {{ head_macros::head(config=config) }}
+    <meta http-equiv="content-type" content="text/html; charset=utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="robots" content="noodp"/>
 
-    {%- block open_graph %}{{ head_macros::open_graph(config=config) }}{% endblock open_graph -%}
+    <link rel="alternate" type="application/rss+xml" title="Venator RSS Feed" href='{{ get_url(path="blog/rss.xml") | safe }}'>
 
-    {%- if config.generate_feed %}
-        {%- if "rss" in config.feed_filename %}
-            {% set feed_type = 'rss+xml' %}
-        {%- else %}
-            {% set feed_type = 'atom+xml' %}
-        {% endif -%}
-        <link rel="alternate" type="application/{{ feed_type }}" title="RSS" href="{{ get_url(path=config.feed_filename) | safe }}">
-    {% endif -%}
+    <link rel="stylesheet" href="{{ get_url(path="style.css", trailing_slash=false) | safe }}">
 
-    {%- if config.extra.favicon %}
-        <link rel="shortcut icon" type='{{ config.extra.favicon_mimetype | default(value="image/x-icon") | safe }}' href="{{ config.extra.favicon | safe }}">
-    {% endif -%}
-
-    {%- block extra_head %}
-    {% endblock extra_head -%}
+    {%- block head_meta %}
+    {% endblock head_meta -%}
 </head>
 
-<body>
-<div class="container">
-    {% block header %}
+<body class="container">
     <header class="header">
         <div class="header__inner">
             <div class="header__logo">
@@ -43,18 +29,79 @@
             </div>
         </div>
 
-        {% block header_menu %}
-        {{ menu_macros::menu(config=config, current_path=current_path) }}
-        {% endblock header_menu %}
+        {%- set current_item = false -%}
+        {%- set current_url = current_url | default(value="") -%}
+        {%- if config.extra.menu_items %}
+            {%- set menu_items = config.extra.menu_items -%}
+
+                {%- for item in menu_items %}
+                    {%- set abs_item_url = item.url | replace(from="$BASE_URL", to=config.base_url) -%}
+                    {%- set is_current = current_url == abs_item_url ~ "/"
+                                        or current_url is starting_with(abs_item_url)
+                    -%}
+                    {%- set is_base = abs_item_url == config.base_url
+                                    or abs_item_url == config.base_url ~ "/"
+                    -%}
+
+                    {%- if is_base %}
+                        {%- set_global base_item = item -%}
+                    {% endif -%}
+
+                    {%- if is_current and not is_base %}
+                        {%- set_global current_item = item -%}
+                    {% endif -%}
+                {% endfor -%}
+
+                {%- if not current_item and base_item %}
+                    {# Did not match any menu URLs -- assume it's a blog post #}
+                    {%- set current_item = base_item -%}
+                {% endif -%}
+
+                {%- if config.extra.menu_items %}
+                    {%- set menu_items = config.extra.menu_items -%}
+
+                    <nav class="menu">
+                        <ul class="menu__links">
+                        {%- for item in menu_items %}
+                            <li {%- if current_item and current_item == item %} class="active" {%- endif %}>
+                                {%- if item.external -%}
+                                    <a href="{{ item.url | safe }}" target="_blank" rel="noopener noreferrer">{{ item.name | safe }}</a>
+                                {%- else -%}
+                                    <a href="{{ get_url(path=item.url, lang=lang) }}">{{ item.name | safe }}</a>
+                                {%- endif -%}
+                            </li>
+                        {% endfor -%}
+                        </ul>
+
+                        
+                        {%- if page.translations %}
+                            {%- set translations = page.translations %}
+                        {%- elif section.translations %}
+                            {%- set translations = section.translations %}
+                        {%- else %}
+                            {%- set translations = [] %}
+                        {% endif -%}
+                        <ul class="menu__translations">
+                            {%- for translation in translations %}
+                                {%- if translation.lang != lang %}
+                                <li>
+                                    <a href="{{ translation.permalink }}">
+                                        {{ translation.lang }}
+                                    </a>
+                                </li>
+                                {% endif -%}
+                            {% endfor -%}
+                        </ul>
+                    </nav>
+                {% endif -%}
+        {% endif -%}
     </header>
-    {% endblock header %}
 
     <main>
         {% block content %}
         {% endblock content %}
     </main>
 
-    {% block footer %}
     <footer class="footer">
         <div class="copyright">
             <span>© {{ now() | date(format="%Y") }} {{ trans(key="footer_powered_by") }} <a rel="noopener noreferrer" target="_blank" href="https://www.getzola.org/">Zola</a></span>
@@ -64,9 +111,6 @@
             <span class="copyright__side">{{ trans(key="footer_hosted_on") }} <a rel="noopener noreferrer" target="_blank" href="https://vercel.com/">Vercel</a></span>
         </div>
     </footer>
-    {% endblock footer %}
-
-</div>
 </body>
 
 </html>

@@ -1,0 +1,85 @@
+{% extends "base.html" %}
+
+{%- block title -%}
+{{ section.title }} | {{ config.title }}
+{%- endblock -%}
+
+{%- block head_meta %}
+<meta name="description" content="{{ section.description }}">
+
+<meta property="og:description" content="{{ section.description }}">
+<meta property="og:title" content="{{ section.title }} | {{ config.title }}">
+<meta property="og:type" content="website">
+<meta property="og:url" content="{{ section.permalink | safe }}">
+
+<meta name="twitter:card" content="summary_large_image">
+{% endblock head_meta -%}
+
+{% block content %}
+<div class="content">
+    <div class="posts">
+        {%- if paginator %}
+            {%- set show_pages = paginator.pages -%}
+        {% else %}
+            {% set section = get_section(path="_index.md") %}
+
+            {%- set show_pages = section.pages -%}
+        {% endif -%}
+
+        {%- for page in show_pages %}
+            <div class="post on-list">
+                <h2 class="post-title"><a href="{{ page.permalink | safe }}">{{ page.title }}</a></h2>
+                
+                <div class="post-meta-inline">
+                    <span class="post-date">
+                        {%- if page.date %}
+                            {{ page.date | date(format="%Y-%m-%d") }}
+                        {% endif -%}
+                    </span>
+                </div>
+
+                {%- if page.taxonomies and page.taxonomies.tags %}
+                <span class="post-tags-inline">
+                    :: {{ trans(key="tag_tags") }}:&nbsp;
+                    {%- set sep = "&nbsp;" -%}
+                    {%- for tag in page.taxonomies.tags | sort | unique(case_sensitive=false) %}
+                        <a class="post-tag" href="{{ get_taxonomy_url(kind='tags', name=tag, lang=page.lang) | safe }}">#{{ tag }}</a>
+                        {%- if not loop.last %}{{ sep | safe }}{% endif -%}
+                    {% endfor -%}
+                </span>
+                {%- endif %}
+
+                <div class="post-content">
+                    {{ page.summary | safe }}
+                </div>
+                <div>
+                    <a class="read-more button" href="{{ page.permalink | safe }}">
+                        <span class="button__text">{{ trans(key="post_read_more") }}</span>&nbsp;
+                        <span class="button__icon">&#8617;&#xFE0E;</span>
+                    </a>
+                </div>
+            </div>
+        {% endfor -%}
+        <div class="pagination">
+            <div class="pagination__buttons">
+            {%- if paginator.previous %}
+                <span class="button previous">
+                    <a href="{{ paginator.previous | safe }}">
+                        <span class="button__icon">←</span>&nbsp;
+                        <span class="button__text">{{ trans(key="paginator_newer_posts") }}</span>
+                    </a>
+                </span>
+            {% endif -%}
+            {%- if paginator.next %}
+                <span class="button next">
+                    <a href="{{ paginator.next | safe }}">
+                        <span class="button__text">{{ trans(key="paginator_older_posts") }}</span>&nbsp;
+                        <span class="button__icon">→</span>
+                    </a>
+                </span>
+            {% endif -%}
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock content %}

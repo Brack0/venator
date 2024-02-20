@@ -1,10 +1,19 @@
 {% extends "base.html" %}
 
 {%- block title -%}
-{% set title = "Tag: " ~ term.name %}
-{{ title_macros::title(page_title=title, main_title=config.title) }}
+Tag: {{ term.name }} | {{ config.title }}
 {%- endblock -%}
 
+{%- block head_meta %}
+<meta name="description" content="All posts tagged {{ term.name }}">
+
+<meta property="og:description" content="All posts tagged {{ term.name }}">
+<meta property="og:title" content="{{ term.name }} | {{ config.title }}">
+<meta property="og:type" content="website">
+<meta property="og:url" content='{{ term.permalink }}'>
+
+<meta name="twitter:card" content="summary_large_image">
+{% endblock head_meta -%}
 
 {% block content %}
 <div class="content">
@@ -18,7 +27,27 @@
             {{ trans(key="tag_show_all_tags") }}
         </a>
 
-        {{ post_macros::list_posts(pages=term.pages) }}
+        <ul>
+            {%- for page in term.pages %}
+                {%- if page.draft %}
+                    {% continue %}
+                {% endif -%}
+                <li class="post-list">
+                    <a href="{{ page.permalink | safe }}">
+                        <span class="post-date">{{ page.date }}</span>
+                        :: <span class="post-list-title">{{ page.title }}</span>
+                    </a>
+                    <span class="post-tags-inline">
+                        ::
+                        {%- set sep = "," -%}
+                        {%- for tag in page.taxonomies.tags | sort | unique(case_sensitive=false) %}
+                            <a class="post-tag" href="{{ get_taxonomy_url(kind='tags', name=tag, lang=page.lang) | safe }}">#{{ tag }}</a>
+                            {%- if not loop.last %}{{ sep | safe }}{% endif -%}
+                        {% endfor -%}
+                    </span>
+                </li>
+            {% endfor -%}
+            </ul>
     </div>
 </div>
 {% endblock content %}

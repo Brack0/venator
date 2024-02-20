@@ -3,7 +3,6 @@
 ## \<head> tag
 
 - Title logic (reduce brain overload for sections, pages and others)
-- Lang
 - \<meta> (author and description)
 - OpenGraph (`<html prefix="og: https://ogp.me/ns#">`)
 - Twitter
@@ -24,11 +23,10 @@
 
 - light/dark theme switch ? (user preference for now)
 - change colors ? (see A11Y)
-- lang switch
 
 ## Content
 
-- i18n
+- i18n (fix menu links)
 - Front-end chronicles episodes
 - Landing (crazy CSS ? OpenGL ? WebAssembly ?): be aware of browser/device support
 - Algolia ?
@@ -42,7 +40,7 @@
 - inject only relevant CSS (split)
 - use BEM ? or tag based ?
 - inline CSS (macro: inline_style)
-- Reset : https://keithjgrant.com/posts/2024/01/my-css-resets/
+- Reset : <https://keithjgrant.com/posts/2024/01/my-css-resets/>
 
 ### Other
 

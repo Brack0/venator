@@ -1,25 +1,25 @@
 +++
-title = "Pattern Matching in JS?"
+title = "Du pattern matching en JS ?"
 
 [taxonomies]
-tags = ["Javascript", "Tutorial", "Programming"]
+tags = ["Javascript", "Tutoriel", "Programmation"]
 +++
 
-Unfortunately, it is not (yet) possible in JavaScript, nor in TypeScript. But we can try to get closer to it, especially by separating the identification of a scenario from its execution. The goal is to enhance readability and bring the code closer to the problem it solves. To illustrate this, we will use the example of processing a blog article (adding, deleting, publishing, etc.) based on the information contained in the article. Additionally, I suggest we take it step by step so that you can apply this refactoring in your code.
+Non malheureusement ce n'est pas (encore) possible en Javascript, ni en Typescript. Mais on peut essayer de s'en rapprocher, notamment en séparant l'identification d'un scénario de son exécution. L'objectif est de renforcer la lisibilité et rapprocher le code du problème à résoudre. Pour illustrer le propos, nous utiliserons le traitement d'un article de blog (ajout, suppression, publication, etc.) à partir des informations contenues dans cet article. De plus, je vous propose d'y aller étape par étape afin que vous puissiez appliquer ce refactoring dans votre code.
 
 <!-- more -->
 
 {% advice(type="note") %}
 
-The code examples presented below are in TypeScript and rely on functional programming. So no classes and no inheritance, but data, functions, and also functions of functions.
+Les extraits de code présentés ci-dessous sont en Typescript et reposent sur la programmation fonctionnelle. Donc pas de classes et pas d'héritage, mais des data, des fonctions et aussi des fonctions de fonctions.
 
 {% end %}
 
-## Defining a working context
+## Définition d'un contexte de travail
 
-### Some modeling
+### Un peu de modélisation
 
-Let's start by defining an interface that represents the payload to be processed, in this case, an article. This article has several attributes that indicate whether it should be deleted, unpublished, or created.
+Commençons par définir une interface qui représente la payload à traiter, dans le cas présent un article. Cet article possède plusieurs attributs qui indique s'il est à supprimer, à publier ou à créer.
 
 {% codeblock(name="article.ts") %}
 
@@ -46,7 +46,7 @@ export type PublishAction = typeof PUBLISH_ACTION[keyof typeof PUBLISH_ACTION];
 
 {% end %}
 
-In addition, let's define two interfaces to improve the typing of our example: a repository and a logger.
+En complément, définissons deux interfaces pour améliorer le typage de notre exemple : un repository et un logger.
 
 {% codeblock(name="dependencies.ts") %}
 
@@ -68,9 +68,9 @@ export interface Logger {
 
 {% end %}
 
-### A (very) procedural first version
+### Une première version (très) procédurale
 
-I propose the following implementation for article processing as a starting point for discussion.
+Je vous propose l'implémentation suivante pour le traitement d'un article comme base de réflexion.
 
 {% codeblock(name="index.ts") %}
 
@@ -148,21 +148,21 @@ export const processArticle: ProcessArticle =
 
 {% end %}
 
-Before we work on the code structure, let's go through the contents of the `processArticle()` function together to understand how our article is being processed.
+Avant de travailler sur la structure du code, parcourons ensemble le contenu de la fonction `processArticle()` afin de comprendre comment notre article est traité.
 
-To begin with, we can already exclude the logger whose role is to display the different steps in debug mode and anomalies in the article processing in warning mode. Next, we notice that the function handles 5 distinct use cases: deletion, unpublishing, publishing, creating/updating, and an error case. However, even though we understand the code written line by line, we can identify several major issues: the structural elements are drowned among the rest of the code, the function performs multiple actions on its own, and the identification of scenarios is coupled with the execution of these scenarios. This function has two responsibilities (identifying the scenario and the actions to be performed) and violates the Single Responsibility Principle (SRP).
+Pour commencer, on peut déjà écarter le logger dont le rôle est d'afficher en debug les différentes étapes et en warn les anomalies sur le traitement d'un article. Ensuite on remarque que la fonction gère 5 use-case distincts : suppression, dépublication, publication, création/mise à jour et un cas d'erreur. Cependant, même si on comprend le code écrit ligne par ligne, on peut identifier plusieurs problèmes majeurs : les éléments structurants sont noyés parmi le reste du code, la fonction réalise seule plusieurs actions, l'identification des scénarios est couplée à l'exécution de ces scénarios. Cette fonction a donc deux responsabilités (l'identification du scénario et les actions à réaliser) et viole le principe de responsabilité unique (SRP).
 
-If you're not convinced that this coupling is problematic, try to visualize the impact on the code of the following requirements:
+Si vous n'êtes pas convaincu que ce couplage est problématique, essayez de visualiser les impacts sur le code des besoins suivants :
 
-- "Bug: At the time of publication, articles must have content."
-- "Feature: Make it impossible to delete published articles."
-- "Feature: Allow creation and publication in one go."
+- "Bug : au moment de la publication les articles doivent avoir un contenu"
+- "Feature : Rendre impossible la suppression d'articles qui sont publiés"
+- "Feature : Permettre la création et la publication en une seule fois"
 
-Without refactoring, we can see that the code will quickly become difficult to maintain, and it will be increasingly challenging to identify the intention behind the code.
+Sans refactoring, on voit que le code va vite devenir difficile à maintenir et il sera de plus en plus compliqué d'identifier l'intention derrière le code.
 
-## A short detour into Clean Code
+## Petit détour par Clean Code
 
-To address some of the issues mentioned earlier, I suggest using a classic technique: decomposing into multiple functions (Clean Code: "Extract till you drop").
+Afin de traiter certains des problèmes mentionnés précédemment, je vous propose d'utiliser une technique classique : la décomposition en plusieurs fonctions (Clean Code : "Extract till you drop").
 
 {% codeblock(name="index.ts") %}
 
@@ -282,13 +282,13 @@ export const createOrUpdateArticle: CreateOrUpdateArticle =
 
 {% end %}
 
-The first thing we notice is that readability is much better. We now have a healthier foundation to build a pattern matching in the `processArticle()` function. This will allow us to isolate the identification of the scenario so that we can easily add new use cases or change conditions without affecting the rest of the processing.
+La première chose que l'on remarque, c'est que la lisibilité est bien meilleure. On a maintenant une base plus saine pour construire un pattern matching dans la fonction `processArticle()`. Cela va nous permettre d'isoler l'identification du scénario afin de pouvoir ajouter facilement des nouveaux use-case ou changer les conditions sans impacter le reste du traitement
 
-## Precisely and explicitly identifying the scenario
+## Identifier précisément et explicitement le scénario
 
 > Explicit is better than implicit
 
-In our example, we have 5 distinct use cases, so let's explicitly bring out these 5 scenarios. To do this, we can use a simple Enum as follows.
+Dans notre exemple nous avons 5 use-case distincts, donc faisons ressortir explicitement ces 5 scénarios. Pour ce faire, on peut baser sur un simple Enum comme ci-dessous.
 
 {% codeblock(name="command.ts") %}
 
@@ -306,7 +306,7 @@ export type Command = typeof COMMAND[keyof typeof COMMAND];
 
 {% end %}
 
-Next, we can implement a method whose role is to identify an intention (named `Command` in our example) based on the information contained in the article. We just need to follow the structure of the previous code and return the appropriate use case.
+Ensuite, nous pouvons implémenter une méthode dont le rôle est d'identifier une intention (nommée `Command` dans notre exemple) à partir des informations contenues dans l'article. Il nous suffit de reprendre l'articulation du code précédent et de renvoyer le bon use-case.
 
 {% codeblock(name="command.ts") %}
 
@@ -337,9 +337,10 @@ export const getCommand: GetCommand = ({ article }) => {
 
 {% end %}
 
-## Getting closer to pattern matching
 
-The main trick is to combine the concepts of [literals](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Grammar_and_types#object_literals) and [IIFE](https://developer.mozilla.org/en-US/docs/Glossary/IIFE). We will use an object literal as the structure of our pattern matching. The keys of the object correspond to the different use cases, and the associated values are the implementations of these use cases. Notice that we use arrow functions to avoid executing all scenarios when the object is created.
+## S'approcher du pattern matching
+
+L'astuce principale est de mêler les concepts de [literals](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Grammar_and_types#object_literals) et d'[IIFE](https://developer.mozilla.org/en-US/docs/Glossary/IIFE). On va utiliser un objet litéral comme structure de notre pattern matching. Les clés de l'objet correspondent aux différents use-case et les valeurs associées sont les implémentations de ces use-case. Point important, on utilise des arrow functions pour éviter d'exécuter tous les scénarios à la création de l'objet.
 
 ```typescript
 const objectLiteral = {
@@ -349,7 +350,7 @@ const objectLiteral = {
 };
 ```
 
-From an object literal like the one above, the goal is to target the use case and execute the correct callback. I'll provide a very basic illustration.
+A partir d'un objet litéral comme ci-dessus, l'objectif est de cibler le use-case et d'exécuter la bonne callback. Je vous donne une illustration très basique.
 
 ```typescript
 const callback = objectLiteral["case1"];
@@ -357,7 +358,7 @@ const callback = objectLiteral["case1"];
 callback(); // Will call fun1()
 ```
 
-In the previous step, we defined a function `getCommand()` whose role is to identify the use case. We also defined identifiers for our use cases (the values of `Command`). So, we can replace `case1`, `case2`, and `case3` with `Command` values, and `fun1()`, `fun2()`, and `fun3()` with the functions extracted earlier. This results in:
+A l'étape précédente, nous avons défini une fonction `getCommand()` dont le rôle est d'identifier le use-case. Nous avons également défini des identifiants pour nos use-cases (les valeurs de `Command`). Donc, nous pouvons remplacer les `case1`, `case2` et `case3` par des valeurs de `Command`, et les `fun1()`, `fun2()` et `fun3()` par les fonctions extraites plus haut. Ce qui donne :
 
 ```typescript
 const objectLiteral = {
@@ -381,7 +382,7 @@ const callback = objectLiteral[getCommand({ article })];
 callback();
 ```
 
-Finally, if we put ourselves back in the initial context and remove the intermediate variables, we get the following syntax, which represents the goal of this article.
+Enfin si on se remet dans le contexte initial et que l'on retire les variables intermédiaires, on obtient la syntaxe ci-dessous qui représente l'objectif de cet article.
 
 {% codeblock(name="article.ts") %}
 
@@ -414,6 +415,6 @@ export const processArticle: ProcessArticle =
 
 ## Conclusion
 
-We're almost there! Unfortunately, we are forced to go through an intermediate structure (which I called `Command` in this example) to build our pattern matching.
+On y est presque ! Malheureusement, on est contraint de passer par une structure intermédiaire (que j'ai appelé `Command` dans cet exemple) afin de construire notre pattern matching.
 
-What do you think of this syntax? Should JavaScript include real pattern matching, like in C# for example?
+Que pensez-vous de cette syntaxe ? Est-ce que Javascript devrait inclure un vrai pattern matching, comme en C# par exemple ?

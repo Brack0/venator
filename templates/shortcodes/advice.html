@@ -1,4 +1,4 @@
 <div class="advice">
-    <div class="advice__{{ type }}">{%- if name %}{{ name }}{%- else %}{{ type }}{%- endif -%}</div>
+    <div class="advice__{{ type }}">{%- if name -%}{{ name }}{%- else -%}{{ type }}{%- endif -%}</div>
     <div class="advice__content">{{ body | markdown | safe }}</div>
 </div>

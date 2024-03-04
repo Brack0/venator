@@ -1,10 +1,10 @@
-{% extends "base.html" %}
+{%- extends "base.html" -%}
 
 {%- block title -%}
 {{ page.title }} | {{ config.title }}
 {%- endblock -%}
 
-{%- block head_meta %}
+{%- block head_meta -%}
 <meta name="description" content="{{ page.description }}">
 
 <meta property="og:description" content="{{ page.description }}">
@@ -13,59 +13,59 @@
 <meta property="og:url" content="{{ page.permalink | safe }}">
 
 <meta name="twitter:card" content="summary_large_image">
-{% endblock head_meta -%}
+{%- endblock head_meta -%}
 
-{% block content %}
+{%- block content -%}
 <div class="content">
     <div class="post">
         <h1 class="post-title"><a href="{{ page.permalink | safe }}">{{ page.title }}</a></h1>
         <div class="post-meta-inline">
             <span class="post-date">
-                {%- if page.date %}
+                {%- if page.date -%}
                 {{ page.date | date(format="%Y-%m-%d") }}
-                {% endif -%}
+                {%- endif -%}
             </span>
         </div>
 
-        {%- if page.taxonomies and page.taxonomies.tags %}
+        {%- if page.taxonomies and page.taxonomies.tags -%}
         <span class="post-tags-inline">
             :: {{ trans(key="tag_tags") }}:&nbsp;
             {%- set sep = "&nbsp;" -%}
-            {%- for tag in page.taxonomies.tags | sort | unique(case_sensitive=false) %}
+            {%- for tag in page.taxonomies.tags | sort | unique(case_sensitive=false) -%}
             <a class="post-tag" href="{{ get_taxonomy_url(kind='tags', name=tag, lang=page.lang) | safe }}">#{{ tag }}</a>
-            {%- if not loop.last %}{{ sep | safe }}{% endif -%}
-            {% endfor -%}
+            {%- if not loop.last -%}{{ sep | safe }}{%-endif -%}
+            {%- endfor -%}
         </span>
-        {%- endif %}
+        {%- endif -%}
         <div class="post-content">
             {{ page.content | safe }}
         </div>
-        {%- if page.lower or page.higher %}
+        {%- if page.lower or page.higher -%}
         <div class="pagination">
             <div class="pagination__title">
                 <span class="pagination__title-h">{{ trans(key="post_view_navigation_prompt") }}</span>
                 <hr />
             </div>
             <div class="pagination__buttons">
-                {%- if page.higher %}
+                {%- if page.higher -%}
                 <span class="button previous">
                     <a href="{{ page.higher.permalink | safe }}">
                         <span class="button__icon">←</span>&nbsp;
                         <span class="button__text">{{ page.higher.title }}</span>
                     </a>
                 </span>
-                {% endif %}
-                {% if page.lower %}
+                {%- endif -%}
+                {%- if page.lower -%}
                 <span class="button next">
                     <a href="{{ page.lower.permalink | safe }}">
                         <span class="button__text">{{ page.lower.title }}</span>&nbsp;
                         <span class="button__icon">→</span>
                     </a>
                 </span>
-                {% endif -%}
+                {%- endif -%}
             </div>
         </div>
-        {% endif -%}
+        {%- endif -%}
     </div>
 </div>
-{% endblock content %}
+{%- endblock content -%}

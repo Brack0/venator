@@ -1,10 +1,10 @@
-{% extends "base.html" %}
+{%- extends "base.html" -%}
 
 {%- block title -%}
 Tags | {{ config.title }}
 {%- endblock -%}
 
-{%- block head_meta %}
+{%- block head_meta -%}
 <meta name="description" content="All tags">
 
 <meta property="og:description" content="All tags">
@@ -13,23 +13,23 @@ Tags | {{ config.title }}
 <meta property="og:url" content='{{ get_taxonomy(kind=taxonomy.name) | get(key="permalink") }}'>
 
 <meta name="twitter:card" content="summary_large_image">
-{% endblock head_meta -%}
+{%- endblock head_meta -%}
 
 
-{% block content %}
+{%- block content -%}
 <div class="content">
     <div class="post">
         <h1 class="post-title">{{ trans(key="tag_all_tags") }}</h1>
 
         <ul>
-            {% for term in terms %}
+            {%- for term in terms -%}
             <li class="tag-list">
                 <a href="{{ term.permalink | safe }}">
                     {{ term.name }} ({{ term.pages | length }} {{ trans(key="post_post") }}{{ term.pages | length | pluralize }})
                 </a>
             </li>
-            {% endfor %}
+            {%- endfor -%}
         </ul>
     </div>
 </div>
-{% endblock content %}
+{%- endblock content -%}

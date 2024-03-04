@@ -1,35 +1,54 @@
-{% import "macros/head.html" as head_macros -%}
+{%- import "macros/head.html" as head_macros -%}
+
+{%- if page.translations -%}
+{%- set translations = page.translations -%}
+{%- elif section.translations -%}
+{%- set translations = section.translations -%}
+{%- else -%}
+{%- set translations = [] -%}
+{%- endif -%}
 
 <!DOCTYPE html>
 <html lang="{{ lang }}" prefix="og: https://ogp.me/ns#">
 
 <head>
-    <title>{%- block title %}Welcome aboard the Venator{% endblock title -%}</title>
+    <title>{%- block title -%}Welcome aboard the Venator{%- endblock title -%}</title>
     <meta http-equiv="content-type" content="text/html; charset=utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="robots" content="noodp" />
 
     <link rel="icon" href='{{ get_url(path="favicon.ico") }}'>
 
+    {%- if current_url -%}
+    <link rel="canonical" href="{{ current_url }}">
+    {%- endif -%}
+
+    {%- for translation in translations -%}
+    <link rel="alternate" href="{{ translation.permalink }}" hreflang="{{ translation.lang }}">
+    {%- if translation.lang == config.default_language -%}
+    <link rel="alternate" href="{{ translation.permalink }}" hreflang="x-default">
+    {%- endif -%}
+    {%- endfor -%}
+
     <link rel="alternate" type="application/rss+xml" title="Venator RSS Feed" href='{{ get_url(path="blog/rss.xml") | safe }}'>
 
     <link rel="stylesheet" href='{{ get_url(path="style.css", trailing_slash=false) | safe }}'>
 
-    {%- block head_meta %}
-    {% endblock head_meta -%}
+    {%- block head_meta -%}
+    {%- endblock head_meta -%}
 </head>
 
 <body class="container">
     <header class="header">
         <div class="header__logo">
-            <a href="{{ config.base_url | safe }}" class="logo">
+            <a href='{{ get_url(path="./", lang=lang) }}' class="logo">
                 {{ trans(key="logo_text") }}
             </a>
         </div>
 
         <nav class="menu">
             <ul class="menu__links">
-                {%- for item in config.extra.menu_items %}
+                {%- for item in config.extra.menu_items -%}
                 <li>
                     {%- if item.external -%}
                     <a href="{{ item.url | safe }}" target="_blank" rel="noopener noreferrer">{{ item.name | safe }}</a>
@@ -37,34 +56,26 @@
                     <a href="{{ get_url(path=item.url, lang=lang) }}">{{ item.name | safe }}</a>
                     {%- endif -%}
                 </li>
-                {% endfor -%}
+                {%- endfor -%}
             </ul>
 
-
-            {%- if page.translations %}
-            {%- set translations = page.translations %}
-            {%- elif section.translations %}
-            {%- set translations = section.translations %}
-            {%- else %}
-            {%- set translations = [] %}
-            {% endif -%}
             <ul class="menu__links">
-                {%- for translation in translations %}
-                {%- if translation.lang != lang %}
+                {%- for translation in translations -%}
+                {%- if translation.lang != lang -%}
                 <li>
                     <a href="{{ translation.permalink }}">
                         {{ translation.lang }}
                     </a>
                 </li>
-                {% endif -%}
-                {% endfor -%}
+                {%- endif -%}
+                {%- endfor -%}
             </ul>
         </nav>
     </header>
 
     <main>
-        {% block content %}
-        {% endblock content %}
+        {%- block content -%}
+        {%- endblock content -%}
     </main>
 
     <footer class="footer">

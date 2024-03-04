@@ -3,7 +3,6 @@
 ## SEO
 
 - check meta for all kind of pages (page, section, tags, etc)
-- canonical/alternate
 - sitemap.xml: ignore tags (all langs)
 
 ## A11Y

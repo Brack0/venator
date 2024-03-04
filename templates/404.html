@@ -1,10 +1,10 @@
-{% extends "base.html" %}
+{%-extends "base.html" -%}
 
-{% block title %}
+{%- block title -%}
 404 | {{ config.title }}
-{% endblock title %}
+{%- endblock title -%}
 
-{%- block head_meta %}
+{%- block head_meta -%}
 <meta name="description" content="Page not found">
 
 <meta property="og:description" content="Page not found">
@@ -13,13 +13,13 @@
 <meta property="og:url" content='{{ get_url(path="404") }}'>
 
 <meta name="twitter:card" content="summary">
-{% endblock head_meta -%}
+{%- endblock head_meta -%}
 
-{% block content %}
+{%- block content -%}
 <div class="content">
     <div class="post">
-        <h1 class="post-title">{% block heading %}{{ trans(key="lost") }}{% endblock heading %}</h1>
-        <p>{% block message %}{{ trans(key="page_doesnt_exist") }}{% endblock message %}</p>
+        <h1 class="post-title">{%- block heading -%}{{ trans(key="lost") }}{%- endblock heading -%}</h1>
+        <p>{%- block message -%}{{ trans(key="page_doesnt_exist") }}{%- endblock message -%}</p>
     </div>
 </div>
-{% endblock content %}
+{%- endblock content -%}

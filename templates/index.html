@@ -1,10 +1,10 @@
-{% extends "base.html" %}
+{%- extends "base.html" -%}
 
-{%- block title %}
+{%- block title -%}
 Welcome aboard the Venator
-{% endblock title -%}
+{%- endblock title -%}
 
-{%- block head_meta %}
+{%- block head_meta -%}
 <meta property="og:title" content="Welcome aboard the Venator">
 <meta property="og:url" content="{{ config.base_url | safe }}">
 <meta property="og:type" content="profile">
@@ -13,9 +13,9 @@ Welcome aboard the Venator
 <meta property="og:profile:username" content="brack0">
 
 <meta name="twitter:card" content="summary_large_image">
-{% endblock head_meta -%}
+{%- endblock head_meta -%}
 
-{% block content %}
+{%- block content -%}
 <div class="hero">
     <div class="hero__main">
         <h1 class="hero__title">{{ trans(key="hero_title") }}</h1>
@@ -24,4 +24,4 @@ Welcome aboard the Venator
     <p>{{ trans(key="hero_hello_there") }}</p>
     <div>{{ trans(key="hero_content_1") }}<h2 class="hero__name">{{ trans(key="hero_content_2") }}</h2>{{ trans(key="hero_content_3") }}</div>
 </div>
-{% endblock content %}
+{%- endblock content -%}

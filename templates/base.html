@@ -20,13 +20,13 @@
     <link rel="icon" href='{{ get_url(path="favicon.ico") }}'>
 
     {%- if current_url -%}
-    <link rel="canonical" href="{{ current_url }}">
+    <link rel="canonical" href="{{ current_url | safe }}">
     {%- endif -%}
 
     {%- for translation in translations -%}
-    <link rel="alternate" href="{{ translation.permalink }}" hreflang="{{ translation.lang }}">
+    <link rel="alternate" href="{{ translation.permalink | safe }}" hreflang="{{ translation.lang }}">
     {%- if translation.lang == config.default_language -%}
-    <link rel="alternate" href="{{ translation.permalink }}" hreflang="x-default">
+    <link rel="alternate" href="{{ translation.permalink | safe }}" hreflang="x-default">
     {%- endif -%}
     {%- endfor -%}
 
@@ -63,7 +63,7 @@
                 {%- for translation in translations -%}
                 {%- if translation.lang != lang -%}
                 <li>
-                    <a href="{{ translation.permalink }}">
+                    <a href="{{ translation.permalink | safe }}">
                         {{ translation.lang }}
                     </a>
                 </li>

@@ -29,25 +29,25 @@ Tag: {{ term.name }} | {{ config.title }}
 
         <ul>
             {%- for page in term.pages %}
-                {%- if page.draft %}
-                    {% continue %}
-                {% endif -%}
-                <li class="post-list">
-                    <a href="{{ page.permalink | safe }}">
-                        <span class="post-date">{{ page.date }}</span>
-                        :: <span class="post-list-title">{{ page.title }}</span>
-                    </a>
-                    <span class="post-tags-inline">
-                        ::
-                        {%- set sep = "," -%}
-                        {%- for tag in page.taxonomies.tags | sort | unique(case_sensitive=false) %}
-                            <a class="post-tag" href="{{ get_taxonomy_url(kind='tags', name=tag, lang=page.lang) | safe }}">#{{ tag }}</a>
-                            {%- if not loop.last %}{{ sep | safe }}{% endif -%}
-                        {% endfor -%}
-                    </span>
-                </li>
+            {%- if page.draft %}
+            {% continue %}
+            {% endif -%}
+            <li class="post-list">
+                <a href="{{ page.permalink | safe }}">
+                    <span class="post-date">{{ page.date }}</span>
+                    :: <span class="post-list-title">{{ page.title }}</span>
+                </a>
+                <span class="post-tags-inline">
+                    ::
+                    {%- set sep = "," -%}
+                    {%- for tag in page.taxonomies.tags | sort | unique(case_sensitive=false) %}
+                    <a class="post-tag" href="{{ get_taxonomy_url(kind='tags', name=tag, lang=page.lang) | safe }}">#{{ tag }}</a>
+                    {%- if not loop.last %}{{ sep | safe }}{% endif -%}
+                    {% endfor -%}
+                </span>
+            </li>
             {% endfor -%}
-            </ul>
+        </ul>
     </div>
 </div>
 {% endblock content %}

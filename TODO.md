@@ -3,6 +3,7 @@
 ## SEO
 
 - check meta for all kind of pages (page, section, tags, etc)
+- canonical/alternate
 - sitemap.xml: ignore tags (all langs)
 
 ## A11Y
@@ -30,7 +31,6 @@
 ### HTML
 
 - Cleanup uneeded tags (simplify HTML structure)
-- Cleanup menu template in `base.html`
 - A lot of `| safe` is either missing or useless. Need some cleanup on these.
 
 ### CSS

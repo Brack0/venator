@@ -7,13 +7,13 @@
     <title>{%- block title %}Welcome aboard the Venator{% endblock title -%}</title>
     <meta http-equiv="content-type" content="text/html; charset=utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="robots" content="noodp"/>
+    <meta name="robots" content="noodp" />
 
     <link rel="icon" href='{{ get_url(path="favicon.ico") }}'>
 
     <link rel="alternate" type="application/rss+xml" title="Venator RSS Feed" href='{{ get_url(path="blog/rss.xml") | safe }}'>
 
-    <link rel="stylesheet" href="{{ get_url(path="style.css", trailing_slash=false) | safe }}">
+    <link rel="stylesheet" href='{{ get_url(path="style.css", trailing_slash=false) | safe }}'>
 
     {%- block head_meta %}
     {% endblock head_meta -%}
@@ -21,82 +21,45 @@
 
 <body class="container">
     <header class="header">
-        <div class="header__inner">
-            <div class="header__logo">
-                <a href="{{ config.base_url | safe }}" style="text-decoration: none;">
-                    <div class="logo">
-                        {{ trans(key="logo_text") }}
-                    </div>
-                </a>
-            </div>
+        <div class="header__logo">
+            <a href="{{ config.base_url | safe }}" class="logo">
+                {{ trans(key="logo_text") }}
+            </a>
         </div>
 
-        {%- set current_item = false -%}
-        {%- set current_url = current_url | default(value="") -%}
-        {%- if config.extra.menu_items %}
-            {%- set menu_items = config.extra.menu_items -%}
-
-                {%- for item in menu_items %}
-                    {%- set abs_item_url = item.url | replace(from="$BASE_URL", to=config.base_url) -%}
-                    {%- set is_current = current_url == abs_item_url ~ "/"
-                                        or current_url is starting_with(abs_item_url)
-                    -%}
-                    {%- set is_base = abs_item_url == config.base_url
-                                    or abs_item_url == config.base_url ~ "/"
-                    -%}
-
-                    {%- if is_base %}
-                        {%- set_global base_item = item -%}
-                    {% endif -%}
-
-                    {%- if is_current and not is_base %}
-                        {%- set_global current_item = item -%}
-                    {% endif -%}
+        <nav class="menu">
+            <ul class="menu__links">
+                {%- for item in config.extra.menu_items %}
+                <li>
+                    {%- if item.external -%}
+                    <a href="{{ item.url | safe }}" target="_blank" rel="noopener noreferrer">{{ item.name | safe }}</a>
+                    {%- else -%}
+                    <a href="{{ get_url(path=item.url, lang=lang) }}">{{ item.name | safe }}</a>
+                    {%- endif -%}
+                </li>
                 {% endfor -%}
+            </ul>
 
-                {%- if not current_item and base_item %}
-                    {# Did not match any menu URLs -- assume it's a blog post #}
-                    {%- set current_item = base_item -%}
+
+            {%- if page.translations %}
+            {%- set translations = page.translations %}
+            {%- elif section.translations %}
+            {%- set translations = section.translations %}
+            {%- else %}
+            {%- set translations = [] %}
+            {% endif -%}
+            <ul class="menu__links">
+                {%- for translation in translations %}
+                {%- if translation.lang != lang %}
+                <li>
+                    <a href="{{ translation.permalink }}">
+                        {{ translation.lang }}
+                    </a>
+                </li>
                 {% endif -%}
-
-                {%- if config.extra.menu_items %}
-                    {%- set menu_items = config.extra.menu_items -%}
-
-                    <nav class="menu">
-                        <ul class="menu__links">
-                        {%- for item in menu_items %}
-                            <li {%- if current_item and current_item == item %} class="active" {%- endif %}>
-                                {%- if item.external -%}
-                                    <a href="{{ item.url | safe }}" target="_blank" rel="noopener noreferrer">{{ item.name | safe }}</a>
-                                {%- else -%}
-                                    <a href="{{ get_url(path=item.url, lang=lang) }}">{{ item.name | safe }}</a>
-                                {%- endif -%}
-                            </li>
-                        {% endfor -%}
-                        </ul>
-
-                        
-                        {%- if page.translations %}
-                            {%- set translations = page.translations %}
-                        {%- elif section.translations %}
-                            {%- set translations = section.translations %}
-                        {%- else %}
-                            {%- set translations = [] %}
-                        {% endif -%}
-                        <ul class="menu__translations">
-                            {%- for translation in translations %}
-                                {%- if translation.lang != lang %}
-                                <li>
-                                    <a href="{{ translation.permalink }}">
-                                        {{ translation.lang }}
-                                    </a>
-                                </li>
-                                {% endif -%}
-                            {% endfor -%}
-                        </ul>
-                    </nav>
-                {% endif -%}
-        {% endif -%}
+                {% endfor -%}
+            </ul>
+        </nav>
     </header>
 
     <main>
@@ -106,11 +69,14 @@
 
     <footer class="footer">
         <div class="copyright">
-            <span>© {{ now() | date(format="%Y") }} {{ trans(key="footer_powered_by") }} <a rel="noopener noreferrer" target="_blank" href="https://www.getzola.org/">Zola</a></span>
+            <span>© {{ now() | date(format="%Y") }} {{ trans(key="footer_powered_by") }} <a rel="noopener noreferrer" target="_blank"
+                    href="https://www.getzola.org/">Zola</a></span>
             <span class="copyright__sep">::</span>
-            <span class="copyright__side">{{ trans(key="footer_theme_by") }} <a rel="noopener noreferrer" target="_blank" href="https://github.com/pawroman/zola-theme-terminimal/">Terminimal</a></span>
+            <span class="copyright__side">{{ trans(key="footer_theme_by") }} <a rel="noopener noreferrer" target="_blank"
+                    href="https://github.com/pawroman/zola-theme-terminimal/">Terminimal</a></span>
             <span class="copyright__sep">::</span>
-            <span class="copyright__side">{{ trans(key="footer_hosted_on") }} <a rel="noopener noreferrer" target="_blank" href="https://vercel.com/">Vercel</a></span>
+            <span class="copyright__side">{{ trans(key="footer_hosted_on") }} <a rel="noopener noreferrer" target="_blank"
+                    href="https://vercel.com/">Vercel</a></span>
         </div>
     </footer>
 </body>

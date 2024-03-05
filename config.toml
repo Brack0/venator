@@ -3,7 +3,8 @@ title = "Venator"
 
 default_language = "en"
 compile_sass = true
-feed_filename = "rss.xml"        # Enabled in blog content
+# Feed is only generated for blog content but not for all pages
+feed_filename = "rss.xml"
 build_search_index = false
 taxonomies = [{ name = "tags" }]
 
@@ -22,6 +23,11 @@ menu_items = [
     { name = "github", url = "https://github.com/brack0", external = true },
     { name = "gitlab", url = "https://gitlab.com/Brack0", external = true },
 ]
+# Some explanation about base_url and site_url
+# base_url will impact most of urls (`permalink`, `current_url`, `get_url(path="/foo")`)
+# By setting the recommended value (aka the production base url), this will produce many wrong urls (other envs, domain aliases/redirects)
+# site_url is used when we really need a complete production url (canonical and alternate urls)
+site_url = "https://brack0.dev"
 
 [languages.fr]
 title = "Venator"

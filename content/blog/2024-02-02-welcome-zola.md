@@ -123,4 +123,4 @@ TBD but these elements will imply time and some changes:
 
 _Where did the 3D animation go?_
 
-It will come back eventually (but maybe with another visual), still available [here](https://nebulon.vercel.app/).
+It will come back eventually (but maybe with another visual), still available here : <https://nebulon.vercel.app/>.

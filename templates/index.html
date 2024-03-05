@@ -5,6 +5,9 @@ Welcome aboard the Venator
 {%- endblock title -%}
 
 {%- block head_meta -%}
+<meta name="description" content='{{ trans(key="hero_tagline") }}'>
+
+<meta property="og:description" content='{{ trans(key="hero_tagline") }}'>
 <meta property="og:title" content="Welcome aboard the Venator">
 <meta property="og:url" content="{{ config.base_url | safe }}">
 <meta property="og:type" content="profile">

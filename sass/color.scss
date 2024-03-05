@@ -1,13 +1,13 @@
 :root {
     @media (prefers-color-scheme: dark) {
-        --accent: rgb(35, 176, 255);
-        --accent-alpha-70: rgba(35, 176, 255, .7);
-        --accent-alpha-20: rgba(35, 176, 255, .2);
+        --accent: #23b0ff;
+        --accent-alpha-70: #23b0ffb3;
+        --accent-alpha-20: #23b0ff33;
 
         --background: #1D212C;
-        --border-color: rgba(255, 240, 224, .125);
+        --border-color: #fff0e020;
 
-        --color: #A9B7C6;
+        --color: #ebedf0;
 
         a.logo {
             color: black;
@@ -16,12 +16,12 @@
     }
 
     @media (prefers-color-scheme: light) {
-        --accent: rgb(32, 128, 192);
-        --accent-alpha-70: rgba(32, 128, 192, .7);
-        --accent-alpha-20: rgba(32, 128, 192, .2);
+        --accent: #2080c0;
+        --accent-alpha-70: #2080c0b3;
+        --accent-alpha-20: #2080c033;
 
         --background: white;
-        --border-color: rgba(0, 0, 16, .125);
+        --border-color: #00001020;
 
         --color: #1D212C;
 

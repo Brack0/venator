@@ -7,7 +7,7 @@
 
 ## A11Y
 
-- color contrast
+- color contrast (warning: theme for code blocks)
 - real audit (lighthouse is definitely not enough)
 
 ## Cosmetic

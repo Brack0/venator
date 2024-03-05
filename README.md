@@ -14,8 +14,12 @@ Install Zola : <https://www.getzola.org/documentation/getting-started/installati
 ### Launch dev mode
 
 ```sh
-zola serve
+zola serve -u /
 ```
+
+#### Trivia
+
+We use `-u /`, which stands for `base_url = "/"`, in dev mode as we don't default value (`127.0.0.1:1111`). See `site_url` in `config.toml`.
 
 ### Build the app
 

@@ -20,13 +20,13 @@
     <link rel="icon" href='{{ get_url(path="favicon.ico") }}'>
 
     {%- if current_url -%}
-    <link rel="canonical" href="{{ current_url | safe }}">
+    <link rel="canonical" href="{{ config.extra.site_url ~ current_url | safe }}">
     {%- endif -%}
 
     {%- for translation in translations -%}
-    <link rel="alternate" href="{{ translation.permalink | safe }}" hreflang="{{ translation.lang }}">
+    <link rel="alternate" href="{{ config.extra.site_url ~ translation.permalink | safe }}" hreflang="{{ translation.lang }}">
     {%- if translation.lang == config.default_language -%}
-    <link rel="alternate" href="{{ translation.permalink | safe }}" hreflang="x-default">
+    <link rel="alternate" href="{{ config.extra.site_url ~ translation.permalink | safe }}" hreflang="x-default">
     {%- endif -%}
     {%- endfor -%}
 
@@ -41,9 +41,11 @@
 <body class="container">
     <header class="header">
         <div class="header__logo">
-            <a href='{{ get_url(path="./", lang=lang) }}' class="logo">
-                {{ trans(key="logo_text") }}
-            </a>
+            {%- if lang == config.default_language -%}
+            <a href='{{ get_url(path="/", trailing_slash=true) }}' class="logo">{{ trans(key="logo_text") }}</a>
+            {%- else -%}
+            <a href='{{ get_url(path="/", lang=lang) }}' class="logo">{{ trans(key="logo_text") }}</a>
+            {%- endif -%}
         </div>
 
         <nav class="menu">

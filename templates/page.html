@@ -5,9 +5,15 @@
 {%- endblock -%}
 
 {%- block head_meta -%}
-<meta name="description" content="{{ page.description }}">
 
+{%- if page.description -%}
+<meta name="description" content="{{ page.description }}">
 <meta property="og:description" content="{{ page.description }}">
+{%- elif page.summary -%}
+<meta name="description" content="{{ page.summary | striptags }}">
+<meta property="og:description" content="{{ page.summary | striptags }}">
+{%- endif -%}
+
 <meta property="og:title" content="{{ page.title }} | {{ config.title }}">
 <meta property="og:type" content="article">
 <meta property="og:url" content="{{ page.permalink | safe }}">

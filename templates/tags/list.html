@@ -1,13 +1,13 @@
 {%- extends "base.html" -%}
 
 {%- block title -%}
-Tags | {{ config.title }}
+{{ trans(key="tag_tags", lang=lang) | capitalize }} | {{ config.title }}
 {%- endblock -%}
 
 {%- block head_meta -%}
-<meta name="description" content="All tags">
+<meta name="description" content='{{ trans(key="tag_all_tags", lang=lang) }}'>
 
-<meta property="og:description" content="All tags">
+<meta property="og:description" content='{{ trans(key="tag_all_tags", lang=lang) }}'>
 <meta property="og:title" content="Tags | {{ config.title }}">
 <meta property="og:type" content="website">
 <meta property="og:url" content='{{ get_taxonomy(kind=taxonomy.name) | get(key="permalink") }}'>
@@ -19,13 +19,13 @@ Tags | {{ config.title }}
 {%- block content -%}
 <div class="content">
     <div class="post">
-        <h1 class="post-title">{{ trans(key="tag_all_tags") }}</h1>
+        <h1 class="post-title">{{ trans(key="tag_all_tags", lang=lang) }}</h1>
 
         <ul>
             {%- for term in terms -%}
             <li class="tag-list">
                 <a href="{{ term.permalink | safe }}">
-                    {{ term.name }} ({{ term.pages | length }} {{ trans(key="post_post") }}{{ term.pages | length | pluralize }})
+                    {{ term.name }} ({{ term.pages | length }} {{ trans(key="post_post", lang=lang) }}{{ term.pages | length | pluralize }})
                 </a>
             </li>
             {%- endfor -%}

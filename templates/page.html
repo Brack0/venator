@@ -35,7 +35,7 @@
 
         {%- if page.taxonomies and page.taxonomies.tags -%}
         <span class="post-tags-inline">
-            :: {{ trans(key="tag_tags") }}:&nbsp;
+            :: {{ trans(key="tag_tags", lang=lang) }}:&nbsp;
             {%- set sep = "&nbsp;" -%}
             {%- for tag in page.taxonomies.tags | sort | unique(case_sensitive=false) -%}
             <a class="post-tag" href="{{ get_taxonomy_url(kind='tags', name=tag, lang=page.lang) | safe }}">#{{ tag }}</a>
@@ -49,7 +49,7 @@
         {%- if page.lower or page.higher -%}
         <div class="pagination">
             <div class="pagination__title">
-                <span class="pagination__title-h">{{ trans(key="post_view_navigation_prompt") }}</span>
+                <span class="pagination__title-h">{{ trans(key="post_view_navigation_prompt", lang=lang) }}</span>
                 <hr />
             </div>
             <div class="pagination__buttons">

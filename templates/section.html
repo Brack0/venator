@@ -18,7 +18,7 @@
 {%- block content -%}
 <div class="content">
     <div class="posts">
-        <h1>My takes on this world</h1>
+        <h1>{{ trans(key="blog_title", lang=lang) }}</h1>
         {%- if paginator -%}
         {%- set show_pages = paginator.pages -%}
         {%- else -%}
@@ -41,7 +41,7 @@
 
             {%- if page.taxonomies and page.taxonomies.tags -%}
             <span class="post-tags-inline">
-                :: {{ trans(key="tag_tags") }}:&nbsp;
+                :: {{ trans(key="tag_tags", lang=lang) }}:&nbsp;
                 {%- for tag in page.taxonomies.tags | sort | unique(case_sensitive=false) -%}
                 <a class="post-tag" href="{{ get_taxonomy_url(kind='tags', name=tag, lang=page.lang) | safe }}">#{{ tag }}</a>
                 {%- if not loop.last -%}{{ " " }}{%-endif -%}{# blank space between tags #}
@@ -54,7 +54,7 @@
             </div>
             <div>
                 <a class="read-more button" href="{{ page.permalink | safe }}">
-                    <span class="button__text">{{ trans(key="post_read_more") }}</span>&nbsp;
+                    <span class="button__text">{{ trans(key="post_read_more", lang=lang) }}</span>&nbsp;
                     <span class="button__icon">&#8617;&#xFE0E;</span>
                 </a>
             </div>
@@ -66,14 +66,14 @@
                 <span class="button previous">
                     <a href="{{ paginator.previous | safe }}">
                         <span class="button__icon">←</span>&nbsp;
-                        <span class="button__text">{{ trans(key="paginator_newer_posts") }}</span>
+                        <span class="button__text">{{ trans(key="paginator_newer_posts", lang=lang) }}</span>
                     </a>
                 </span>
                 {%- endif -%}
                 {%- if paginator.next -%}
                 <span class="button next">
                     <a href="{{ paginator.next | safe }}">
-                        <span class="button__text">{{ trans(key="paginator_older_posts") }}</span>&nbsp;
+                        <span class="button__text">{{ trans(key="paginator_older_posts", lang=lang) }}</span>&nbsp;
                         <span class="button__icon">→</span>
                     </a>
                 </span>

@@ -12,7 +12,7 @@
 <html lang="{{ lang }}" prefix="og: https://ogp.me/ns#">
 
 <head>
-    <title>{%- block title -%}Welcome aboard the Venator{%- endblock title -%}</title>
+    <title>{%- block title -%}{%- endblock title -%}</title>
     <meta http-equiv="content-type" content="text/html; charset=utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="robots" content="noodp" />
@@ -42,9 +42,9 @@
     <header class="header">
         <div class="header__logo">
             {%- if lang == config.default_language -%}
-            <a href='{{ get_url(path="/", trailing_slash=true) }}' class="logo">{{ trans(key="logo_text") }}</a>
+            <a href='{{ get_url(path="/", trailing_slash=true) }}' class="logo">{{ trans(key="logo_text", lang=lang) }}</a>
             {%- else -%}
-            <a href='{{ get_url(path="/", lang=lang) }}' class="logo">{{ trans(key="logo_text") }}</a>
+            <a href='{{ get_url(path="/", lang=lang) }}' class="logo">{{ trans(key="logo_text", lang=lang) }}</a>
             {%- endif -%}
         </div>
 
@@ -82,13 +82,13 @@
 
     <footer class="footer">
         <div class="copyright">
-            <span>© {{ now() | date(format="%Y") }} {{ trans(key="footer_powered_by") }} <a rel="noopener noreferrer" target="_blank"
+            <span>© {{ now() | date(format="%Y") }} {{ trans(key="footer_powered_by", lang=lang) }} <a rel="noopener noreferrer" target="_blank"
                     href="https://www.getzola.org/">Zola</a></span>
             <span class="copyright__sep">::</span>
-            <span class="copyright__side">{{ trans(key="footer_theme_by") }} <a rel="noopener noreferrer" target="_blank"
+            <span class="copyright__side">{{ trans(key="footer_theme_by", lang=lang) }} <a rel="noopener noreferrer" target="_blank"
                     href="https://github.com/pawroman/zola-theme-terminimal/">Terminimal</a></span>
             <span class="copyright__sep">::</span>
-            <span class="copyright__side">{{ trans(key="footer_hosted_on") }} <a rel="noopener noreferrer" target="_blank"
+            <span class="copyright__side">{{ trans(key="footer_hosted_on", lang=lang) }} <a rel="noopener noreferrer" target="_blank"
                     href="https://vercel.com/">Vercel</a></span>
         </div>
     </footer>

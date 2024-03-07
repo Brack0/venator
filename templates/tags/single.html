@@ -1,7 +1,7 @@
 {%- extends "base.html" -%}
 
 {%- block title -%}
-Tag: {{ term.name }} | {{ config.title }}
+{{ trans(key="tag_tag", lang=lang) | capitalize }}: {{ term.name }} | {{ config.title }}
 {%- endblock -%}
 
 {%- block head_meta -%}
@@ -19,19 +19,16 @@ Tag: {{ term.name }} | {{ config.title }}
 <div class="content">
     <div class="post">
         <h1 class="post-title">
-            {{ trans(key="tag_tag") }}: #{{ term.name }}
-            ({{ term.pages | length }} {{ trans(key="post_post") }}{{ term.pages | length | pluralize }})
+            {{ trans(key="tag_tag", lang=lang) | capitalize }}: #{{ term.name }}
+            ({{ term.pages | length }} {{ trans(key="post_post", lang=lang) }}{{ term.pages | length | pluralize }})
         </h1>
 
         <a href='{{ get_taxonomy(kind="tags") | get(key="permalink") }}'>
-            {{ trans(key="tag_show_all_tags") }}
+            {{ trans(key="tag_show_all_tags", lang=lang) }}
         </a>
 
         <ul>
             {%- for page in term.pages -%}
-            {%- if page.draft -%}
-            {%- continue -%}
-            {%- endif -%}
             <li class="post-list">
                 <a href="{{ page.permalink | safe }}">
                     <span class="post-date">{{ page.date }}</span>

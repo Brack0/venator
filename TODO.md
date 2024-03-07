@@ -4,7 +4,6 @@
 
 ### I18N
 
-- use translation keys everywhere
 - add french translations
 
 ### Content

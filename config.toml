@@ -38,6 +38,7 @@ taxonomies = [{ name = "tags" }]
 
 [translations]
 logo_text = "brack0.dev"
+site_title = "Welcome aboard the Venator"
 
 footer_powered_by = "Powered by"
 footer_theme_by = "Theme inspired by"
@@ -56,17 +57,20 @@ page_doesnt_exist = "This page does not exist."
 paginator_newer_posts = "Newer posts"
 paginator_older_posts = "Older posts"
 
+blog_title = "My takes on this world"
+
 post_post = "post"
 post_read_more = "Read more"
 post_view_navigation_prompt = "Thanks for reading! Read other posts?"
 
-tag_all_tags = "all tags"
+tag_all_tags = "All tags"
 tag_tag = "tag"
 tag_tags = "tags"
 tag_show_all_tags = "Show all tags"
 
 [languages.fr.translations]
 logo_text = "brack0.dev"
+site_title = "Welcome aboard the Venator"
 
 footer_powered_by = "Powered by"
 footer_theme_by = "Theme inspired by"
@@ -85,11 +89,13 @@ page_doesnt_exist = "This page does not exist."
 paginator_newer_posts = "Newer posts"
 paginator_older_posts = "Older posts"
 
+blog_title = "My takes on this world"
+
 post_post = "post"
 post_read_more = "Read more"
 post_view_navigation_prompt = "Thanks for reading! Read other posts?"
 
-tag_all_tags = "all tags"
+tag_all_tags = "All tags"
 tag_tag = "tag"
 tag_tags = "tags"
 tag_show_all_tags = "Show all tags"

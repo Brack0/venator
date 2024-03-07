@@ -18,7 +18,7 @@
 {%- block content -%}
 <div class="content">
     <div class="posts">
-        <h1>{{ trans(key="blog_title", lang=lang) }}</h1>
+        <h1>{{ section.description }}</h1>
         {%- if paginator -%}
         {%- set show_pages = paginator.pages -%}
         {%- else -%}

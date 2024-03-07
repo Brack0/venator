@@ -4,8 +4,6 @@
 
 ### Content
 
-- Front-end chronicles episodes (blog posts, templates, RSS)
-- Authors in blog posts (this can lead to a rework of templates for taxonomies)
 - Update and translate "welcome zola"
 
 ## Later
@@ -22,7 +20,8 @@
 - Landing (crazy CSS ? OpenGL ? WebAssembly ?): be aware of browser/device support
 - Algolia ?
 - Footer content (Versus Nebulon) in "about me" page ?
-- Better 404 ? 
+- Split section templates (blog and podcast)
+- Better 404 ?
 - Post order mismatch :
   - at the end of blog section, older posts = arrow right / newer posts = arrow left
   - at the end of a post, older post = arrow left / newer post = arrow right

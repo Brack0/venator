@@ -2,7 +2,7 @@
 title = "Qu'est qu'on pourrait améliorer sur Angular ?"
 
 [taxonomies]
-tags = ["Angular", "Opinion", "Programmation"]
+tags = ["Angular", "Opinion", "Dev"]
 +++
 
 Je vous propose quelques fonctionnalités qui pourraient améliorer la Developer eXperience et le framework dans sa globalité.

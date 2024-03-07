@@ -2,7 +2,7 @@
 title = "Goodbye Redux"
 
 [taxonomies]
-tags = ["Gestion d'état", "Opinion", "Programmation"]
+tags = ["Gestion d'état", "Opinion", "Dev"]
 +++
 
 Parlons de State Management au niveau d'une application. Les états locaux (React Hook, Vue Composable, Service Angular + RxJS Subject) ont un usage limité par définition. Avec l'ampleur de l'écosystème React sur le monde professionnel, Redux est devenu la réponse évidente à la problématique du State Management. Etudions ensemble le processus assez naturel qui nous amène à Redux et prenons du recul sur nos choix.
@@ -53,7 +53,7 @@ Est-ce qu'il existe mieux ? Objectivement il est difficile de répondre à cette
 
 Undux se montre comme une alternative simplifiée de Redux et Flux. Les concepts sont conservés mais l'implémentation est plus légère. La partie réactive est assurée par RxJS. Je vous renvoie vers le [Quick Start](https://undux.org/#quick-start) pour avoir des exemples. Les méthodes "get", "set" et "on" remplacent les selectors, les reducers et les effects sans avoir de code à écrire.
 
-Cependant, mon coup de cœur est pour [Akita](https://github.com/salesforce/akita), également construit avec RxJS. Ici, on reprend les recettes qui fonctionnent ailleurs (pattern Flux et Redux, immutabilité, les notions de flux de données/reactive programming, etc) et on construit une solution axée sur l'expérience développeur (concepts issus de la POO, courbe d'apprentissage modérée, boilerplate réduit).
+Cependant, mon coup de cœur est pour [Akita](https://github.com/salesforce/akita), également construit avec RxJS. Ici, on reprend les recettes qui fonctionnent ailleurs (pattern Flux et Redux, immutabilité, les notions de flux de données/programmation réactive, etc) et on construit une solution axée sur l'expérience développeur (concepts issus de la POO, courbe d'apprentissage modérée, boilerplate réduit).
 
 La simplification, c'est aussi le choix de Vue, précédemment avec VueX et maintenant avec Pinia. Même si Vue laisse la porte ouverte à Redux, cela fait plusieurs années qu'un State Management plus simple est proposé, voire recommandé dans la documentation.
 

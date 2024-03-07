@@ -53,9 +53,11 @@
                 {%- for item in config.extra.menu_items -%}
                 <li>
                     {%- if item.external -%}
-                    <a href="{{ item.url | safe }}" target="_blank" rel="noopener noreferrer">{{ item.name | safe }}</a>
+                    <a href="{{ item.url | safe }}" {%- if item.title -%}title="{{ item.title }}" {%- endif -%} target="_blank"
+                        rel="noopener noreferrer">{{ item.name | safe }}</a>
                     {%- else -%}
-                    <a href="{{ get_url(path=item.url, lang=lang) }}">{{ item.name | safe }}</a>
+                    <a href="{{ get_url(path=item.url, lang=lang) }}" {%- if item.title -%}title="{{ item.title }}" {%- endif -%}>{{ item.name | safe
+                        }}</a>
                     {%- endif -%}
                 </li>
                 {%- endfor -%}

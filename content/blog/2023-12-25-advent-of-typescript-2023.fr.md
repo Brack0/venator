@@ -2,7 +2,7 @@
 title = "Advent of TypeScript 2023"
 
 [taxonomies]
-tags = ["Typescript", "Tutoriel", "Programmation"]
+tags = ["Typescript", "Dev"]
 +++
 
 Au lieu de participer au populaire Advent of Code, cette année j'ai décidé de relever le défi de l'[Advent of TypeScript](https://typehero.dev/aot-2023). Dans cet article, vous trouverez mes solutions ainsi que quelques détails sur leur fonctionnement ou ce que j'ai appris en résolvant les défis.

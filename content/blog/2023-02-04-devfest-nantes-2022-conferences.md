@@ -19,7 +19,7 @@ This is a personnal list of conferences I like the most throughout the event. Yo
 
 {{ youtube(id="meiA4TPltoI") }}
 
-## Programming
+## Dev
 
 {{ youtube(id="6zQs4B2NIKA") }}
 

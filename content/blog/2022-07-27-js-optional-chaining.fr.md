@@ -2,7 +2,7 @@
 title = "Optional chaining : meilleur ami ou pire ennemi ?"
 
 [taxonomies]
-tags = ["Javascript", "Opinion", "Programmation"]
+tags = ["Javascript", "Opinion", "Dev"]
 +++
 
 Intégré à ES2020, présent depuis 2018 dans Babel et depuis la version 3.7 de Typescript, l'optional chaining est un opérateur largement utilisé aujourd'hui. Même si l'intérêt d'un tel opérateur est indéniable, regardons ensemble les biais et les mauvaises pratiques qui peuvent émerger de son usage.

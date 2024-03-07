@@ -3,7 +3,7 @@ title = "The Concept of Injector in Angular"
 description = "Become an expert in Angular: Understanding DI with Injectors and their usage"
 
 [taxonomies]
-tags = ["Angular", "Advanced", "Programming"]
+tags = ["Angular", "Advanced", "Dev"]
 +++
 
 An `Injector` is a mechanism dedicated to dependency injection in Angular. Not all frameworks build their Dependency Injection (DI) the same way. For example, the Spring IoC Container can be mentioned for the famous Java framework. The Angular documentation has long emphasized `providers`, leaving aside other elements necessary for DI. `Injectors` are no exception, which is why I propose to see together how they work.

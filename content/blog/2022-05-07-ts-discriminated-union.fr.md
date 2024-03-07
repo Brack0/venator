@@ -2,7 +2,7 @@
 title = "Exploiter les Discriminated Union en Typescript"
 
 [taxonomies]
-tags = ["Typescript", "Tutoriel", "Programmation"]
+tags = ["Typescript", "Dev"]
 +++ 
 
 ## De quoi parle-t-on ?

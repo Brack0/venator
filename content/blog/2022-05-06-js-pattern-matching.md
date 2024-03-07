@@ -2,7 +2,7 @@
 title = "Pattern Matching in JS?"
 
 [taxonomies]
-tags = ["Javascript", "Tutorial", "Programming"]
+tags = ["Javascript", "Dev"]
 +++
 
 Unfortunately, it is not (yet) possible in JavaScript, nor in TypeScript. But we can try to get closer to it, especially by separating the identification of a scenario from its execution. The goal is to enhance readability and bring the code closer to the problem it solves. To illustrate this, we will use the example of processing a blog article (adding, deleting, publishing, etc.) based on the information contained in the article. Additionally, I suggest we take it step by step so that you can apply this refactoring in your code.

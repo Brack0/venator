@@ -1,8 +1,9 @@
 +++
 title = "Enter the Vue.js"
+authors = ["Denis Souron", "Benjamin Auzanneau"]
 
 [taxonomies]
-tags = ["VueJS", "Conference", "Programming"]
+tags = ["VueJS", "Conférence", "Dev"]
 +++
 
 Dans le monde du développement frontend, React et Angular sont les frameworks qui dominent le marché. Cependant, Vue.js est clairement un challenger à ne pas prendre à la légère.

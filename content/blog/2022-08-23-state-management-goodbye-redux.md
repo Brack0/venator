@@ -2,7 +2,7 @@
 title = "Goodbye Redux"
 
 [taxonomies]
-tags = ["State Management", "Opinion", "Programming"]
+tags = ["State Management", "Opinion", "Dev"]
 +++
 
 Let's talk about application-level state management. Local states (React Hook, Vue Composable, Angular Service + RxJS Subject) have limited use by definition. With the extent of the React ecosystem in the professional world, Redux has become the obvious answer to the State Management challenge. Let's explore the fairly natural process that leads us to Redux and take a step back to reconsider our choices.

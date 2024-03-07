@@ -7,13 +7,13 @@
 
     &:after {
       content: '';
-      background: repeating-linear-gradient(-90deg, var(--accent), var(--accent) 2px, transparent 0, transparent 16px);
+      background: repeating-linear-gradient(-90deg, var(--primary), var(--primary) 2px, transparent 0, transparent 16px);
       width: 100%;
     }
 
     a {
       text-decoration: none;
-      background: var(--accent);
+      background: var(--primary);
       padding: 5px 10px;
     }
   }

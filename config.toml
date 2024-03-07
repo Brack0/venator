@@ -4,7 +4,8 @@ title = "Venator"
 default_language = "en"
 compile_sass = true
 # Feed is only generated for blog content but not for all pages
-feed_filename = "rss.xml"
+feed_filename = "atom.xml"
+author = "Denis Souron"
 build_search_index = false
 taxonomies = [{ name = "tags" }]
 minify_html = true

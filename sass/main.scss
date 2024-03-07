@@ -17,7 +17,7 @@ body {
   font-size: 1rem;
   line-height: 1.54;
   background-color: var(--background);
-  color: var(--color);
+  color: var(--foreground);
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -webkit-overflow-scrolling: touch;
@@ -98,7 +98,7 @@ figure {
     font-size: 14px;
     padding: 5px 10px;
     margin-top: 5px;
-    background: var(--accent);
+    background: var(--primary);
     color: var(--background);
 
     &.left {
@@ -171,8 +171,8 @@ pre {
 }
 
 blockquote {
-  border-top: 1px solid var(--accent);
-  border-bottom: 1px solid var(--accent);
+  border-top: 1px solid var(--primary);
+  border-bottom: 1px solid var(--primary);
   margin: 40px 0;
   padding: 25px;
 
@@ -206,7 +206,7 @@ blockquote {
     display: block;
     position: absolute;
     left: -25px;
-    color: var(--accent);
+    color: var(--primary);
   }
 }
 
@@ -218,12 +218,12 @@ table {
 }
 
 table, th, td {
-  border: 1px dashed var(--accent);
+  border: 1px dashed var(--primary);
   padding: 10px;
 }
 
 th {
-  color: var(--accent);
+  color: var(--primary);
 }
 
 ul, ol {
@@ -251,7 +251,7 @@ ol ol {
   }
 
   .hero__title {
-    color: var(--accent);
+    color: var(--primary);
     font-size: 3rem;
   }
 
@@ -262,7 +262,7 @@ ol ol {
   .hero__name {
     display: inline;
     font-size: 1.2rem;
-    color: var(--accent);
+    color: var(--primary);
   }
 }
 

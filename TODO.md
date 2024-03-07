@@ -2,19 +2,13 @@
 
 ## Mandatory
 
-### SEO
+### I18N
 
-- check meta for all kind of pages (page, section, tags, etc)
-- sitemap.xml: ignore tags (all langs)
-
-### A11Y
-
-- real audit (lighthouse is definitely not enough) on all pages (most of them are ok).
-- check white theme
+- use translation keys everywhere
+- add french translations
 
 ### Content
 
-- i18n (add french translations, hreflang alternates)
 - Front-end chronicles episodes (blog posts, templates, RSS)
 - Footer content (Versus Nebulon)
 - 404

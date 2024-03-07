@@ -4,9 +4,9 @@
 
 ### Content
 
-- Check if all blog posts are here (they can be writting in french, english or both)
 - Front-end chronicles episodes (blog posts, templates, RSS)
 - Authors in blog posts (this can lead to a rework of templates for taxonomies)
+- Update and translate "welcome zola"
 
 ## Later
 
@@ -14,6 +14,8 @@
 
 - light/dark theme switch ? (user preference for now)
 - change colors ? (see A11Y)
+- highlight inline code (text inside these backticks ``)
+- highlight advices (background color ?)
 
 ### Content bis
 

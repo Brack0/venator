@@ -23,7 +23,9 @@ What can be noticed is that the operation of an `Injector` alone is fairly trivi
 Okay, they are many, but how many? Each `NgModule` will automatically create an `Injector`, and each component or directive that has `providers` or `viewProviders` will also create an `Injector`. In the first case, it is a `ModuleInjector`, and in the second case, we talk about an `ElementInjector`. We therefore understand that the number of `Injectors` will quickly grow with our application (at a minimum, as many `Injectors` as `NgModule`).
 
 {% advice(type="tip") %}
+
 When an `Injector` is destroyed, the instances it had in its cache are also destroyed. `NgModules` are not often destroyed but components are a different story. So `ElementInjectors` are frequently created and destroyed, as are the associated services.
+
 {% end %}
 
 ## Injector and Dependency Resolution

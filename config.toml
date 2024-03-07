@@ -74,7 +74,7 @@ site_title = "Bienvenue à bord du Venator"
 
 footer_powered_by = "Propulsé par"
 footer_theme_by = "Thème inspiré de"
-footer_hosted_on = "Hébergé chez"
+footer_hosted_on = "Hébergement"
 
 hero_title = "Venator"
 hero_tagline = "Les Fondations du Développement Web contre la Confédération des Node_modules"
@@ -89,7 +89,7 @@ page_doesnt_exist = "Cette page n'existe pas."
 paginator_newer_posts = "Posts plus récents"
 paginator_older_posts = "Posts plus anciens"
 
-blog_title = "Mon point de vue sur ce monde"
+blog_title = "Mon point de vue sur le monde"
 
 post_post = "post"
 post_read_more = "Lire la suite"

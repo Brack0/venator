@@ -56,7 +56,7 @@ samsung 17.0
 
 Dans notre cas, Browserslist (avec l'aide de [Can I Use](https://caniuse.com/)) va nous aider à configurer les deux prochains outils que je présente ci-dessous. En effet, nous allons l'utiliser en tant que référentiel des navigateurs à supporter. L'avantage est que Babel et [ESLint](https://github.com/amilajack/eslint-plugin-compat) utilise également ce référentiel pour le support Javascript.
 
-{% advice(type="tip") %}
+{% advice(type="tip", name="Astuce") %}
 
 Vous pouvez également exploiter la puissance de Browserslist pour vos backends NodeJS. Plus d'infos sur le dépôt de [Browserslist](https://github.com/browserslist/browserslist).
 
@@ -74,7 +74,7 @@ Bref, ce plugin [PostCSS](https://github.com/postcss/postcss) vous permet de vou
 
 En complément des best practices, vous pouvez également faire ressortir les règles non supportées par votre cible (les navigateurs à supporter). Tout comme Autoprefixer, on va se reposer sur Browserslist (+ Can I Use) pour faire le lien entre votre cible et les règles CSS utilisées. C'est exactement ce que fait le plugin Stylelint [no-unsupported-browser-features](https://github.com/ismay/stylelint-no-unsupported-browser-features) que je vous invite à essayer. N'oubliez pas vos IDE pour réduire la boucle de feedback.
 
-{% advice(type="tip") %}
+{% advice(type="tip", name="Astuce") %}
 
 Quand vous combinez Stylelint et Autoprefixer (ce que je vous recommande chaudement), pensez à activer les règles de type `xxx-no-vendor-prefix` car Autoprefixer se charge du support à votre place. Nul besoin de polluer vos fichiers de styles.
 

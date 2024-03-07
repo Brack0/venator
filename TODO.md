@@ -2,10 +2,6 @@
 
 ## Mandatory
 
-### I18N
-
-- add french translations
-
 ### Content
 
 - Front-end chronicles episodes (blog posts, templates, RSS)
@@ -24,6 +20,9 @@
 
 - Landing (crazy CSS ? OpenGL ? WebAssembly ?): be aware of browser/device support
 - Algolia ?
+- Post order mismatch :
+  - at the end of blog section, older posts = arrow right / newer posts = arrow left
+  - at the end of a post, older post = arrow left / newer post = arrow right
 
 ### Technical
 

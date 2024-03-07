@@ -23,7 +23,7 @@
             ({{ term.pages | length }} {{ trans(key="post_post", lang=lang) }}{{ term.pages | length | pluralize }})
         </h1>
 
-        <a href='{{ get_taxonomy(kind="tags") | get(key="permalink") }}'>
+        <a href='{{ get_taxonomy(kind="tags", lang=lang) | get(key="permalink") }}'>
             {{ trans(key="tag_show_all_tags", lang=lang) }}
         </a>
 

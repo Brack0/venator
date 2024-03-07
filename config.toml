@@ -58,8 +58,6 @@ page_doesnt_exist = "This page does not exist."
 paginator_newer_posts = "Newer posts"
 paginator_older_posts = "Older posts"
 
-blog_title = "My takes on this world"
-
 post_post = "post"
 post_read_more = "Read more"
 post_view_navigation_prompt = "Thanks for reading! Read other posts?"
@@ -89,8 +87,6 @@ page_doesnt_exist = "Cette page n'existe pas."
 
 paginator_newer_posts = "Posts plus récents"
 paginator_older_posts = "Posts plus anciens"
-
-blog_title = "Mon point de vue sur le monde"
 
 post_post = "post"
 post_read_more = "Lire la suite"

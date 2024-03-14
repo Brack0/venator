@@ -1,22 +1,16 @@
 # TODO
 
-## Mandatory
+## Cosmetic
 
-### Content
-
-- Update and translate "welcome zola"
-
-## Later
-
-### Cosmetic
-
+- menu links for mobile (visual bug)
 - light/dark theme switch ? (user preference for now)
 - change colors ? (see A11Y)
 - highlight inline code (text inside these backticks ``)
 - highlight advices (background color ?)
 
-### Content bis
+## Content
 
+- Translate "welcome zola"
 - Landing (crazy CSS ? OpenGL ? WebAssembly ?): be aware of browser/device support
 - Algolia ?
 - Footer content (Versus Nebulon) in "about me" page ?
@@ -26,14 +20,18 @@
   - at the end of blog section, older posts = arrow right / newer posts = arrow left
   - at the end of a post, older post = arrow left / newer post = arrow right
 
-### Technical
+## A11Y
 
-#### HTML
+- Fix remaining issues
+
+## Technical
+
+### HTML
 
 - Cleanup uneeded tags (simplify HTML structure)
 - A lot of `| safe` is either missing or useless. Need some cleanup on these.
 
-#### CSS
+### CSS
 
 - remove unused rules
 - provide same visuals across browsers
@@ -42,7 +40,7 @@
 - inline CSS (macro: inline_style)
 - add a reset : <https://keithjgrant.com/posts/2024/01/my-css-resets/>
 
-#### Other
+### Other
 
 - Rename translation keys
 - some doc as code for some features (only Tera comments `{# #}` as HTML comments can go to production)

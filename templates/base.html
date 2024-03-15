@@ -34,6 +34,8 @@
 
     <link rel="stylesheet" href='{{ get_url(path="style.css", trailing_slash=false) | safe }}'>
 
+    <meta property="og:image" content='{{ get_url(path="og-image.png") }}'>
+
     {%- block head_meta -%}
     {%- endblock head_meta -%}
 </head>

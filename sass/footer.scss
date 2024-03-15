@@ -3,7 +3,7 @@
 .footer {
   padding: 40px 0;
   flex-grow: 0;
-  opacity: .6;
+  opacity: .65;
 
   &__inner {
     display: flex;
@@ -24,7 +24,6 @@
 
   .copyright {
     font-size: 1rem;
-    color: var(--light-color-secondary);
 
     @media (max-width: $tablet-max-width) {
       display: flex;

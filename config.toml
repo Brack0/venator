@@ -40,6 +40,7 @@ taxonomies = [{ name = "tags" }]
 [translations]
 logo_text = "brack0.dev"
 site_title = "Welcome aboard the Venator"
+toggle_theme = "Toggle theme (dark/light)"
 
 footer_powered_by = "Powered by"
 footer_theme_by = "Theme inspired by"
@@ -70,6 +71,7 @@ tag_show_all_tags = "Show all tags"
 [languages.fr.translations]
 logo_text = "brack0.dev"
 site_title = "Bienvenue à bord du Venator"
+toggle_theme = "Changement de thème (sombre/clair)"
 
 footer_powered_by = "Propulsé par"
 footer_theme_by = "Thème inspiré de"

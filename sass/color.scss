@@ -1,27 +1,42 @@
+@mixin dark-theme {
+    --primary: #23B0FF;
+
+    --background: #1D212C;
+    --foreground: #EBEDF0;
+    --border-color: #FFF0E020;
+
+    a.logo {
+        color: black;
+    }
+}
+
+@mixin light-theme {
+    --primary: #0C5AA2;
+
+    --background: white;
+    --foreground: #1D212C;
+    --border-color: #00001020;
+
+
+    a.logo {
+        color: white;
+    }
+}
+
 :root {
     @media (prefers-color-scheme: dark) {
-        --primary: #23B0FF;
-
-        --background: #1D212C;
-        --foreground: #EBEDF0;
-        --border-color: #FFF0E020;
-
-        a.logo {
-            color: black;
-        }
-
+        @include dark-theme;
     }
 
     @media (prefers-color-scheme: light) {
-        --primary: #0C5AA2;
+        @include light-theme;
+    }
 
-        --background: white;
-        --foreground: #1D212C;
-        --border-color: #00001020;
+    &.dark {
+        @include dark-theme;
+    }
 
-
-        a.logo {
-            color: white;
-        }
+    &.light {
+        @include light-theme;
     }
 }

@@ -3,8 +3,6 @@
 ## Cosmetic
 
 - menu links for mobile (visual bug)
-- light/dark theme switch ? (user preference for now)
-- change colors ? (see A11Y)
 - highlight inline code (text inside these backticks ``)
 - highlight advices (background color ?)
 
@@ -33,6 +31,7 @@
 
 ### CSS
 
+- consistency in sizing (0.5 rem, 2 rem, 8 rem instead of 10px, 40px, 150px)
 - remove unused rules
 - provide same visuals across browsers
 - use BEM ? or tag based ?
@@ -44,5 +43,4 @@
 
 - Rename translation keys
 - some doc as code for some features (only Tera comments `{# #}` as HTML comments can go to production)
-- create a github issue on Zola: Code hightlight + HTML minify => break newlines in code
 - <https://observatory.mozilla.org/analyze/venator.vercel.app> (and add a badge in Readme)

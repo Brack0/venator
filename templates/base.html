@@ -16,6 +16,7 @@
     <meta http-equiv="content-type" content="text/html; charset=utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="robots" content="noodp" />
+    <meta name="color-scheme" content="dark light">
 
     <link rel="icon" href='{{ get_url(path="favicon.ico") }}'>
 
@@ -53,7 +54,7 @@
         <nav class="menu">
             <ul class="menu__links">
                 {%- for item in config.extra.menu_items -%}
-                <li>
+                <li class="menu__link">
                     {%- if item.external -%}
                     <a href="{{ item.url | safe }}" {%- if item.title -%}title="{{ item.title }}" {%- endif -%} target="_blank"
                         rel="noopener noreferrer">{{ item.name | safe }}</a>
@@ -68,13 +69,39 @@
             <ul class="menu__links">
                 {%- for translation in translations -%}
                 {%- if translation.lang != lang -%}
-                <li>
+                <li class="menu__link">
                     <a href="{{ translation.permalink | safe }}">
                         {{ translation.lang }}
                     </a>
                 </li>
                 {%- endif -%}
                 {%- endfor -%}
+                <li class="menu__link">
+                    <input type="checkbox" id="theme-switch" class="theme__switch" />
+                    <label for="theme-switch" class="theme__switch__label" /><span class="hidden">{{ trans(key="toggle_theme", lang=lang) }}</span></label>
+                    <script>
+                        const themeSwitch = document.querySelector('#theme-switch');
+                        const darkTheme = "dark";
+                        const lightTheme = "light";
+                        const currentTheme = localStorage.getItem('theme');
+                        const prefersColorScheme = window.matchMedia('(prefers-color-scheme: dark)').matches ? darkTheme : lightTheme;
+
+                        themeSwitch.checked = prefersColorScheme === lightTheme;
+
+                        if (currentTheme) {
+                            document.documentElement.classList.add(currentTheme);
+                            themeSwitch.checked = currentTheme === lightTheme;
+                        }
+
+                        themeSwitch.addEventListener('change', (event) => {
+                            const newTheme = event.target.checked ? lightTheme : darkTheme;
+                            const oldTheme = event.target.checked ? darkTheme : lightTheme;
+                            document.documentElement.classList.remove(oldTheme);
+                            document.documentElement.classList.add(newTheme);
+                            localStorage.setItem('theme', newTheme);
+                        });
+                    </script>
+                </li>
             </ul>
         </nav>
     </header>

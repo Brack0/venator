@@ -1,4 +1,4 @@
-{%- import "macros/head.html" as head_macros -%}
+{%- import "macros/header.html" as header -%}
 
 {%- if page.translations -%}
 {%- set translations = page.translations -%}
@@ -42,68 +42,8 @@
 </head>
 
 <body class="container">
-    <header class="header">
-        <div class="header__logo">
-            {%- if lang == config.default_language -%}
-            <a href='{{ get_url(path="/", trailing_slash=true) }}' class="logo">{{ trans(key="logo_text", lang=lang) }}</a>
-            {%- else -%}
-            <a href='{{ get_url(path="/", lang=lang) }}' class="logo">{{ trans(key="logo_text", lang=lang) }}</a>
-            {%- endif -%}
-        </div>
-
-        <nav class="menu">
-            <ul class="menu__links">
-                {%- for item in config.extra.menu_items -%}
-                <li class="menu__link">
-                    {%- if item.external -%}
-                    <a href="{{ item.url | safe }}" {%- if item.title -%}title="{{ item.title }}" {%- endif -%} target="_blank"
-                        rel="noopener noreferrer">{{ item.name | safe }}</a>
-                    {%- else -%}
-                    <a href="{{ get_url(path=item.url, lang=lang) }}" {%- if item.title -%}title="{{ item.title }}" {%- endif -%}>{{ item.name | safe
-                        }}</a>
-                    {%- endif -%}
-                </li>
-                {%- endfor -%}
-            </ul>
-
-            <ul class="menu__links">
-                {%- for translation in translations -%}
-                {%- if translation.lang != lang -%}
-                <li class="menu__link">
-                    <a href="{{ translation.permalink | safe }}">
-                        {{ translation.lang }}
-                    </a>
-                </li>
-                {%- endif -%}
-                {%- endfor -%}
-                <li class="menu__link">
-                    <input type="checkbox" id="theme-switch" class="theme__switch" />
-                    <label for="theme-switch" class="theme__switch__label" /><span class="hidden">{{ trans(key="toggle_theme", lang=lang) }}</span></label>
-                    <script>
-                        const themeSwitch = document.querySelector('#theme-switch');
-                        const darkTheme = "dark";
-                        const lightTheme = "light";
-                        const currentTheme = localStorage.getItem('theme');
-                        const prefersColorScheme = window.matchMedia('(prefers-color-scheme: dark)').matches ? darkTheme : lightTheme;
-
-                        themeSwitch.checked = prefersColorScheme === lightTheme;
-
-                        if (currentTheme) {
-                            document.documentElement.classList.add(currentTheme);
-                            themeSwitch.checked = currentTheme === lightTheme;
-                        }
-
-                        themeSwitch.addEventListener('change', (event) => {
-                            const newTheme = event.target.checked ? lightTheme : darkTheme;
-                            const oldTheme = event.target.checked ? darkTheme : lightTheme;
-                            document.documentElement.classList.remove(oldTheme);
-                            document.documentElement.classList.add(newTheme);
-                            localStorage.setItem('theme', newTheme);
-                        });
-                    </script>
-                </li>
-            </ul>
-        </nav>
+    <header>
+        {{ header::content(translations=translations) }}
     </header>
 
     <main>

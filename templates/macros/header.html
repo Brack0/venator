@@ -1,0 +1,66 @@
+{%- macro content(translations) -%}
+<style>
+    {{ load_data(path="header.css") | safe }}
+</style>
+<div class="header__logo">
+    {%- if lang == config.default_language -%}
+    <a href='{{ get_url(path="/", trailing_slash=true) }}' class="header__logo-link">{{ trans(key="logo_text", lang=lang) }}</a>
+    {%- else -%}
+    <a href='{{ get_url(path="/", lang=lang) }}' class="header__logo-link">{{ trans(key="logo_text", lang=lang) }}</a>
+    {%- endif -%}
+</div>
+
+<nav class="header__menu">
+    <ul class="header__menu-links">
+        {%- for item in config.extra.menu_items -%}
+        <li class="header__menu-link">
+            {%- if item.external -%}
+            <a href="{{ item.url | safe }}" {%- if item.title -%}title="{{ item.title }}" {%- endif -%} target="_blank" rel="noopener noreferrer">{{
+                item.name | safe }}</a>
+            {%- else -%}
+            <a href="{{ get_url(path=item.url, lang=lang) }}" {%- if item.title -%}title="{{ item.title }}" {%- endif -%}>{{ item.name | safe
+                }}</a>
+            {%- endif -%}
+        </li>
+        {%- endfor -%}
+    </ul>
+
+    <ul class="header__menu-links">
+        {%- for translation in translations -%}
+        {%- if translation.lang != lang -%}
+        <li class="header__menu-link">
+            <a href="{{ translation.permalink | safe }}">
+                {{ translation.lang }}
+            </a>
+        </li>
+        {%- endif -%}
+        {%- endfor -%}
+        <li class="header__menu-link">
+            <input type="checkbox" id="theme-switch" class="header__theme-switch" />
+            <label for="theme-switch" class="header__theme-switch-label" /><span class="hidden">{{ trans(key="toggle_theme", lang=lang) }}</span></label>
+            <script>
+                const themeSwitch = document.querySelector('#theme-switch');
+                const darkTheme = "dark";
+                const lightTheme = "light";
+                const currentTheme = localStorage.getItem('theme');
+                const prefersColorScheme = window.matchMedia('(prefers-color-scheme: dark)').matches ? darkTheme : lightTheme;
+
+                themeSwitch.checked = prefersColorScheme === lightTheme;
+
+                if (currentTheme) {
+                    document.documentElement.classList.add(currentTheme);
+                    themeSwitch.checked = currentTheme === lightTheme;
+                }
+
+                themeSwitch.addEventListener('change', (event) => {
+                    const newTheme = event.target.checked ? lightTheme : darkTheme;
+                    const oldTheme = event.target.checked ? darkTheme : lightTheme;
+                    document.documentElement.classList.remove(oldTheme);
+                    document.documentElement.classList.add(newTheme);
+                    localStorage.setItem('theme', newTheme);
+                });
+            </script>
+        </li>
+    </ul>
+</nav>
+{%- endmacro header -%}

@@ -1,8 +1,11 @@
 @import "variables";
 
 .footer {
+	&__container {
+		margin: 2.5rem 0;
+	}
+
 	&__copyright {
-		padding: 2.5rem 0;
 		opacity: var(--opacity);
 
 		@media (max-width: $tablet-max-width) {

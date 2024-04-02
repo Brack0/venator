@@ -2,7 +2,6 @@
 
 ## Cosmetic
 
-- menu links for mobile (visual bug)
 - highlight inline code (text inside these backticks ``)
 - highlight advices (background color ?)
 
@@ -12,7 +11,7 @@
 - Landing (crazy CSS ? OpenGL ? WebAssembly ?): be aware of browser/device support
 - Algolia ?
 - Footer content (Versus Nebulon) in "about me" page ?
-- Split section templates (blog and podcast)
+- Split section templates (blog and podcast). I need a grid for podcast section.
 - Better 404 ?
 - Post order mismatch :
   - at the end of blog section, older posts = arrow right / newer posts = arrow left
@@ -21,6 +20,7 @@
 ## A11Y
 
 - Fix remaining issues
+- Accessible paginator ?
 
 ## Technical
 

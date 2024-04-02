@@ -9,12 +9,12 @@ tags = ["Home Automation", "DNS", "Network"]
 
 This is a step-by-step guide to install Pi-hole on a Raspberry Pi. I will only use IPv4 as IPv6 doesn't provide significant benefits for local network. Please consider reading pi-hole's official documentation : <https://pi-hole.net/>
 
+<!-- more -->
+
 1. Install Raspberry Pi OS (formerly Raspbian) via <https://www.raspberrypi.org/software/>
 2. Boot on this OS
 3. Run `sudo raspi-config` and disable WiFi + Bluetooth (security concerns)
 4. Enable SSH daemon when starting.
-
-<!-- more -->
 
 ## Initial configuration
 

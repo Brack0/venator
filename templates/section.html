@@ -10,7 +10,7 @@
 <meta property="og:description" content="{{ section.description }}">
 <meta property="og:title" content="{{ section.title }} | {{ config.title }}">
 <meta property="og:type" content="website">
-<meta property="og:url" content="{{ section.permalink | safe }}">
+<meta property="og:url" content="{{ section.permalink }}">
 
 <meta name="twitter:card" content="summary_large_image">
 {%- endblock head_meta -%}
@@ -32,58 +32,43 @@
 {%- endif -%}
 
 {%- for page in show_pages -%}
-<article class="post on-list">
-	<h2 class="post-title"><a href="{{ page.permalink | safe }}">{{ page.title }}</a></h2>
+<article class="post__container">
+	<h2 class="post__title"><a href="{{ page.permalink }}" class="post__link">{{ page.title }}</a></h2>
 
-	<footer>
-		<span class="post-meta-inline">
-			<span class="post-date">
-				{%- if page.date -%}
-				{{ page.date | date(format="%Y-%m-%d") }}
-				{%- endif -%}
-			</span>
-		</span>
+	<footer class="post__footer">
+		{{ page.date | date(format="%Y-%m-%d") }}
 
 		{%- if page.taxonomies and page.taxonomies.tags -%}
-		<span class="post-tags-inline">
+		<span class="post__footer-tags">
 			:: {{ trans(key="tag_tags", lang=lang) }}:&nbsp;
 			{%- for tag in page.taxonomies.tags | sort | unique(case_sensitive=false) -%}
-			<a class="post-tag" href="{{ get_taxonomy_url(kind='tags', name=tag, lang=page.lang) | safe }}">#{{ tag }}</a>
+			<a href="{{ get_taxonomy_url(kind='tags', name=tag, lang=page.lang) }}">#{{ tag }}</a>
 			{%- if not loop.last -%}{{ " " }}{%-endif -%}{# blank space between tags #}
 			{%- endfor -%}
 		</span>
 		{%- endif -%}
 	</footer>
 
-	<div class="post-content">
+	<div class="post__content">
 		{{ page.summary | safe }}
 	</div>
-	<div>
-		<a class="read-more button" href="{{ page.permalink | safe }}">
-			<span class="button__text">{{ trans(key="post_read_more", lang=lang) }}</span>&nbsp;
-			<span class="button__icon">&#8617;&#xFE0E;</span>
-		</a>
-	</div>
+	<a href="{{ page.permalink }}"  class="post__read-more">
+		{{ trans(key="post_read_more", lang=lang) }}&nbsp;&#8617;&#xFE0E;
+	</a>
 </article>
 {%- endfor -%}
-<div class="pagination">
-	<div class="pagination__buttons">
-		{%- if paginator.previous -%}
-		<span class="button previous">
-			<a href="{{ paginator.previous | safe }}">
-				<span class="button__icon">←</span>&nbsp;
-				<span class="button__text">{{ trans(key="paginator_newer_posts", lang=lang) }}</span>
-			</a>
-		</span>
-		{%- endif -%}
-		{%- if paginator.next -%}
-		<span class="button next">
-			<a href="{{ paginator.next | safe }}">
-				<span class="button__text">{{ trans(key="paginator_older_posts", lang=lang) }}</span>&nbsp;
-				<span class="button__icon">→</span>
-			</a>
-		</span>
-		{%- endif -%}
-	</div>
-</div>
+{%- if paginator.previous or paginator.next -%}
+<nav class="post__pagination">
+	{%- if paginator.previous -%}
+	<a href="{{ paginator.previous }}" class="post__pagination-link">
+		←&nbsp;{{ trans(key="paginator_newer_posts", lang=lang) }}
+	</a>
+	{%- endif -%}
+	{%- if paginator.next -%}
+	<a href="{{ paginator.next }}" class="post__pagination-link">
+		{{ trans(key="paginator_older_posts", lang=lang) }}&nbsp;→
+	</a>
+	{%- endif -%}
+</nav>
+{%- endif -%}
 {%- endblock content -%}

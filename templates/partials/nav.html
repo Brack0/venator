@@ -16,7 +16,7 @@
 		{%- for translation in translations -%}
 		{%- if translation.lang != lang -%}
 		<li class="nav__menu-link">
-			<a href="{{ translation.permalink | safe }}">
+			<a href="{{ translation.permalink }}">
 				{{ translation.lang }}
 			</a>
 		</li>

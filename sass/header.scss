@@ -1,78 +1,18 @@
-@import "variables";
-
 .header {
-  &__logo {
-    display: flex;
+	&__logo {
+		display: flex;
+	}
 
-    &:after {
-      content: '';
-      background: repeating-linear-gradient(-90deg, var(--primary), var(--primary) 2px, transparent 0, transparent 16px);
-      width: 100%;
-    }
-  }
+	&__logo:after {
+		content: "";
+		background: repeating-linear-gradient(-90deg, var(--color-primary), var(--color-primary) 2px, var(--color-transparent) 0, var(--color-transparent) 16px);
+		width: 100%;
+	}
 
-  &__logo-link {
-    text-decoration: none;
-    background: var(--primary);
-    padding: 5px 10px;
-    color: var(--background);
-  }
-
-  &__menu {
-    margin: 10px 0;
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-between;
-    column-gap: 40px;
-  }
-
-  &__menu-links {
-    display: flex;
-    flex-wrap: wrap;
-    margin: 10px 0;
-    padding: 0;
-    gap: 10px 20px;
-  }
-
-  &__menu-link {
-    list-style: none;
-  }
-
-  &__theme-switch {
-    display: none;
-
-    &:checked+.header__theme-switch-label {
-      background-color: #fff;
-      border: 1px solid #1D212C;
-
-      &:before {
-        left: 28px;
-        background-color: #1D212C;
-      }
-    }
-  }
-
-  &__theme-switch-label {
-    display: inline-block;
-    width: 50px;
-    height: 24px;
-    position: relative;
-    cursor: pointer;
-    background-color: #1D212C;
-    border-radius: 4px;
-    border: 1px solid #fff;
-    transition: background-color 0.3s;
-
-    &:before {
-      content: '';
-      position: absolute;
-      width: 18px;
-      height: 18px;
-      background-color: #fff;
-      border-radius: 2px;
-      top: 2px;
-      left: 2px;
-      transition: left 0.3s;
-    }
-  }
+	&__logo-link {
+		text-decoration: none;
+		background: var(--color-primary);
+		padding: 5px 10px;
+		color: var(--color-background);
+	}
 }

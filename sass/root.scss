@@ -1,0 +1,32 @@
+@mixin dark-theme {
+	--color-background: #1D212C;
+	--color-border: #FFF0E020;
+	--color-foreground: #EBEDF0;
+	--color-primary: #23B0FF;
+}
+
+@mixin light-theme {
+	--color-background: #FFFFFF;
+	--color-border: #00001020;
+	--color-foreground: #1D212C;
+	--color-primary: #0C5AA2;
+}
+
+:root {
+	--color-transparent: rgba(0, 0, 0, 0);
+	--opacity: 0.65;
+
+	@include dark-theme;
+
+	@media (prefers-color-scheme: light) {
+		@include light-theme;
+	}
+
+	&.dark-theme {
+		@include dark-theme;
+	}
+
+	&.light-theme {
+		@include light-theme;
+	}
+}

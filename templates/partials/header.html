@@ -1,0 +1,10 @@
+<header>
+	<div class="header__logo">
+		{%- if lang == config.default_language -%}
+		<a href='{{ get_url(path="/", trailing_slash=true) }}' class="header__logo-link">{{ trans(key="logo_text", lang=lang) }}</a>
+		{%- else -%}
+		<a href='{{ get_url(path="/", lang=lang) }}' class="header__logo-link">{{ trans(key="logo_text", lang=lang) }}</a>
+		{%- endif -%}
+	</div>
+</header>
+

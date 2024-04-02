@@ -1,5 +1,3 @@
-{%- import "macros/header.html" as header -%}
-
 {%- if page.translations -%}
 {%- set translations = page.translations -%}
 {%- elif section.translations -%}
@@ -12,57 +10,62 @@
 <html lang="{{ lang }}" prefix="og: https://ogp.me/ns#">
 
 <head>
-    <title>{%- block title -%}{%- endblock title -%}</title>
-    <meta http-equiv="content-type" content="text/html; charset=utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="robots" content="noodp" />
-    <meta name="color-scheme" content="dark light">
+	<title>{%- block title -%}{%- endblock title -%}</title>
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=1">
+	<!-- Generate hash script tags with https://report-uri.com/home/hash/ -->
+	<meta name="content-security-policy" content="script-src 'sha256-+zchuzq4uhsaJ4MxWoPD4tD0oGRS362K4Y7KYYQlGZQ=' 'strict-dynamic'; object-src 'none'; base-uri 'none';">
+	<meta name="color-scheme" content="dark light">
+	<meta name="theme-color" media="(prefers-color-scheme: light)" content="#FFFFFF">
+	<meta name="theme-color" media="(prefers-color-scheme: dark)" content="#1D212C">
 
-    <link rel="icon" href='{{ get_url(path="favicon.ico") }}'>
+	<link rel="icon" href='{{ get_url(path="favicon.ico") }}'>
 
-    {%- if current_url -%}
-    <link rel="canonical" href="{{ config.extra.site_url ~ current_url | safe }}">
-    {%- endif -%}
+	{%- if current_url -%}
+	<link rel="canonical" href="{{ config.extra.site_url ~ current_url | safe }}">
+	{%- endif -%}
 
-    {%- for translation in translations -%}
-    <link rel="alternate" href="{{ config.extra.site_url ~ translation.permalink | safe }}" hreflang="{{ translation.lang }}">
-    {%- if translation.lang == config.default_language -%}
-    <link rel="alternate" href="{{ config.extra.site_url ~ translation.permalink | safe }}" hreflang="x-default">
-    {%- endif -%}
-    {%- endfor -%}
+	{%- for translation in translations -%}
+	<link rel="alternate" href="{{ config.extra.site_url ~ translation.permalink | safe }}" hreflang="{{ translation.lang }}">
+	{%- if translation.lang == config.default_language -%}
+	<link rel="alternate" href="{{ config.extra.site_url ~ translation.permalink | safe }}" hreflang="x-default">
+	{%- endif -%}
+	{%- endfor -%}
 
-    <link rel="alternate" type="application/rss+xml" title="Venator RSS Feed" href='{{ get_url(path="blog/atom.xml") | safe }}'>
+	<link rel="alternate" type="application/rss+xml" title="Venator RSS Feed" href='{{ get_url(path="blog/atom.xml") | safe }}'>
 
-    <link rel="stylesheet" href='{{ get_url(path="style.css", trailing_slash=false) | safe }}'>
+	<meta property="og:image" content='{{ get_url(path="og-image.png") }}'>
 
-    <meta property="og:image" content='{{ get_url(path="og-image.png") }}'>
+	{%- block head_meta -%}
+	{%- endblock head_meta -%}
 
-    {%- block head_meta -%}
-    {%- endblock head_meta -%}
+	<style>
+		{{ load_data(path="style.css") | safe }}
+	</style>
+	<style>
+		{{ load_data(path="header.css") | safe }}
+	</style>
+	<style>
+		{{ load_data(path="nav.css") | safe }}
+	</style>
+	<style>
+		{{ load_data(path="footer.css") | safe }}
+	</style>
+
+	{%- block content_style -%}
+	{%- endblock content_style-%}
 </head>
 
-<body class="container">
-    <header>
-        {{ header::content(translations=translations) }}
-    </header>
+<body>
+	{%- include "partials/header.html" -%}
+	{%- include "partials/nav.html" -%}
 
-    <main>
-        {%- block content -%}
-        {%- endblock content -%}
-    </main>
+	<main>
+		{%- block content -%}
+		{%- endblock content -%}
+	</main>
 
-    <footer class="footer">
-        <div class="copyright">
-            <span>© {{ now() | date(format="%Y") }} {{ trans(key="footer_powered_by", lang=lang) }} <a rel="noopener noreferrer" target="_blank"
-                    href="https://www.getzola.org/">Zola</a></span>
-            <span class="copyright__sep">::</span>
-            <span class="copyright__side">{{ trans(key="footer_theme_by", lang=lang) }} <a rel="noopener noreferrer" target="_blank"
-                    href="https://github.com/pawroman/zola-theme-terminimal/">Terminimal</a></span>
-            <span class="copyright__sep">::</span>
-            <span class="copyright__side">{{ trans(key="footer_hosted_on", lang=lang) }} <a rel="noopener noreferrer" target="_blank"
-                    href="https://vercel.com/">Vercel</a></span>
-        </div>
-    </footer>
+	{%- include "partials/footer.html" -%}
 </body>
 
 </html>

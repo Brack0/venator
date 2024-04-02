@@ -1,5 +1,0 @@
-{%- macro inline_style(stylesheet_path) -%}
-    <style>
-        {{ load_data(path=stylesheet_path) | safe }}
-    </style>
-{%- endmacro inline_style -%}

@@ -18,13 +18,20 @@
 <meta name="twitter:card" content="summary_large_image">
 {%- endblock head_meta -%}
 
+{%- block content_style -%}
+<style>
+	{{ load_data(path="index.css") | safe }}
+</style>
+{%- endblock content_style-%}
+
 {%- block content -%}
-<div class="hero">
-    <div class="hero__main">
-        <h1 class="hero__title">{{ trans(key="hero_title", lang=lang) }}</h1>
-        <p class="hero__tagline">{{ trans(key="hero_tagline", lang=lang) }}</p>
-    </div>
-    <p>{{ trans(key="hero_hello_there", lang=lang) }}</p>
-    <div>{{ trans(key="hero_content_1", lang=lang) }}<h2 class="hero__name">{{ trans(key="hero_content_2", lang=lang) }}</h2>{{ trans(key="hero_content_3", lang=lang) }}</div>
-</div>
+<section>
+	<div class="hero__main">
+		<h1 class="hero__title">{{ trans(key="hero_title", lang=lang) }}</h1>
+		<p class="hero__tagline">{{ trans(key="hero_tagline", lang=lang) }}</p>
+	</div>
+	<p>{{ trans(key="hero_hello_there", lang=lang) }}</p>
+	<p>{{ trans(key="hero_content_1", lang=lang) }}<strong class="hero__name">{{ trans(key="hero_content_2", lang=lang) }}</strong>{{
+		trans(key="hero_content_3", lang=lang) }}</p>
+</section>
 {%- endblock content -%}

@@ -1,0 +1,60 @@
+<nav class="nav__menu">
+	<ul class="nav__menu-links">
+		{%- for item in config.extra.menu_items -%}
+		<li class="nav__menu-link">
+			{%- if item.external -%}
+			<a href="{{ item.url | safe }}" {%- if item.title -%}title="{{ item.title }}" {%- endif -%} target="_blank" rel="noopener noreferrer">{{
+				item.name | safe }}</a>
+			{%- else -%}
+			<a href="{{ get_url(path=item.url, lang=lang) }}" {%- if item.title -%}title="{{ item.title }}" {%- endif -%}>{{ item.name | safe }}</a>
+			{%- endif -%}
+		</li>
+		{%- endfor -%}
+	</ul>
+
+	<ul class="nav__menu-links">
+		{%- for translation in translations -%}
+		{%- if translation.lang != lang -%}
+		<li class="nav__menu-link">
+			<a href="{{ translation.permalink | safe }}">
+				{{ translation.lang }}
+			</a>
+		</li>
+		{%- endif -%}
+		{%- endfor -%}
+		<li class="nav__menu-link">
+			<input type="checkbox" id="theme-switch" class="nav__theme-switch" />
+			<label for="theme-switch" class="nav__theme-switch-label">
+				<span class="nav__theme-switch-hidden">{{ trans(key="toggle_theme", lang=lang) }}</span>
+			</label>
+			<script>
+				// esbuild --minify (https://esbuild.github.io/try/)
+
+				// (() => {
+				// 	const themeSwitch = document.querySelector('#theme-switch');
+				// 	const darkThemeClass = "dark-theme";
+				// 	const lightThemeClass = "light-theme";
+				// 	const currentTheme = localStorage.getItem('theme');
+				// 	const prefersColorScheme = window.matchMedia('(prefers-color-scheme: light)').matches ? lightThemeClass : darkThemeClass;
+				//
+				// 	themeSwitch.checked = prefersColorScheme === lightThemeClass;
+				//
+				// 	if (currentTheme) {
+				// 		document.documentElement.classList.add(currentTheme);
+				// 		themeSwitch.checked = currentTheme === lightThemeClass;
+				// 	}
+				//
+				// 	themeSwitch.addEventListener('change', (event) => {
+				// 		const newTheme = event.target.checked ? lightThemeClass : darkThemeClass;
+				// 		const oldTheme = event.target.checked ? darkThemeClass : lightThemeClass;
+				// 		document.documentElement.classList.remove(oldTheme);
+				// 		document.documentElement.classList.add(newTheme);
+				// 		localStorage.setItem('theme', newTheme);
+				// 	});
+				// })();
+
+				(() => { const t = document.querySelector("#theme-switch"), c = "dark-theme", e = "light-theme", m = localStorage.getItem("theme"), h = window.matchMedia("(prefers-color-scheme: light)").matches ? e : c; t.checked = h === e, m && (document.documentElement.classList.add(m), t.checked = m === e), t.addEventListener("change", s => { const o = s.target.checked ? e : c, d = s.target.checked ? c : e; document.documentElement.classList.remove(d), document.documentElement.classList.add(o), localStorage.setItem("theme", o) }) })();
+			</script>
+		</li>
+	</ul>
+</nav>

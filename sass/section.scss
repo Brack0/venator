@@ -1,0 +1,8 @@
+.article {
+	&__title {
+		padding-bottom: 1rem;
+		border-bottom: 0.125rem dashed var(--color-primary);
+		color: var(--color-primary);
+		font-weight: normal;
+	}
+}

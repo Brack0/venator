@@ -28,6 +28,8 @@
 
 - Cleanup uneeded tags (simplify HTML structure)
 - A lot of `| safe` is either missing or useless. Need some cleanup on these.
+- Favicon : <https://web.dev/learn/html/document-structure#favicon>
+- All CSP stuff (<https://cheatsheetseries.owasp.org/cheatsheets/Content_Security_Policy_Cheat_Sheet.html>)
 
 ### CSS
 
